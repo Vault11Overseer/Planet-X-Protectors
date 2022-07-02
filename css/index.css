@@ -1,0 +1,24 @@
+/*--------------------------------------------------------------
+>>> INDEX
+--------------------------------------------------------------*/
+
+/* MASTER */
+@import "./Master/1reset.css";
+@import "./Master/2text.css";
+@import "./Master/3color.css";
+@IMPORT "./Master/4switch.css";
+@import "./Master/style.css";
+
+/* MEDIA QUERY */
+@import "./MediaQuery/576.css";
+@import "./MediaQuery/768.css";
+@import "./MediaQuery/992.css";
+@import "./MediaQuery/1200.css";
+@import "./MediaQuery/1400.css";
+
+/* EXTRA */
+@import "./Master/style.css";
+
+/*--------------------------------------------------------------
+>>> INDEX
+--------------------------------------------------------------*/
