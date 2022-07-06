@@ -30,26 +30,15 @@ const shop = new Sprite({
   framesMax: 6
 })
 
+// PLAYER
 const player = new Fighter({
-  position: {
-    x: 0,
-    y: 0
-  },
-  velocity: {
-    x: 0,
-    y: 0
-  },
-  offset: {
-    x: 0,
-    y: 0
-  },
+  position: { x: 0, y: 0},
+  velocity: { x: 0, y: 0},
+  offset: { x: 0, y: 0},
   imageSrc: './img/samuraiMack/Idle.png',
   framesMax: 8,
   scale: 2.5,
-  offset: {
-    x: 215,
-    y: 157
-  },
+  offset: { x: 215, y: 157},
   sprites: {
     idle: {
       imageSrc: './img/samuraiMack/Idle.png',
@@ -81,36 +70,21 @@ const player = new Fighter({
     }
   },
   attackBox: {
-    offset: {
-      x: 100,
-      y: 50
-    },
+    offset: { x: 100, y: 50 },
     width: 160,
     height: 50
   }
 })
 
 const enemy = new Fighter({
-  position: {
-    x: 400,
-    y: 100
-  },
-  velocity: {
-    x: 0,
-    y: 0
-  },
+  position: { x: 400, y: 100 },
+  velocity: { x: 0, y: 0 },
   color: 'blue',
-  offset: {
-    x: -50,
-    y: 0
-  },
+  offset: { x: -50, y: 0 },
   imageSrc: './img/kenji/Idle.png',
   framesMax: 4,
   scale: 2.5,
-  offset: {
-    x: 215,
-    y: 167
-  },
+  offset: { x: 215, y: 167 },
   sprites: {
     idle: {
       imageSrc: './img/kenji/Idle.png',
@@ -142,10 +116,7 @@ const enemy = new Fighter({
     }
   },
   attackBox: {
-    offset: {
-      x: -170,
-      y: 50
-    },
+    offset: { x: -170, y: 50},
     width: 170,
     height: 50
   }
@@ -154,18 +125,10 @@ const enemy = new Fighter({
 console.log(player)
 
 const keys = {
-  a: {
-    pressed: false
-  },
-  d: {
-    pressed: false
-  },
-  ArrowRight: {
-    pressed: false
-  },
-  ArrowLeft: {
-    pressed: false
-  }
+  a: { pressed: false },
+  d: { pressed: false },
+  ArrowRight: { pressed: false },
+  ArrowLeft: { pressed: false}
 }
 
 decreaseTimer()
@@ -180,7 +143,6 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height)
   player.update()
   enemy.update()
-
   player.velocity.x = 0
   enemy.velocity.x = 0
 
@@ -214,7 +176,7 @@ function animate() {
     enemy.switchSprite('idle')
   }
 
-  // jumping
+  // ENEMY JUMPING
   if (enemy.velocity.y < 0) {
     enemy.switchSprite('jump')
   } else if (enemy.velocity.y > 0) {
@@ -238,7 +200,7 @@ function animate() {
     })
   }
 
-  // if player misses
+  // IF PLAYER MISSES
   if (player.isAttacking && player.framesCurrent === 4) {
     player.isAttacking = false
   }
@@ -260,12 +222,12 @@ function animate() {
     })
   }
 
-  // if player misses
+  // IF ENEMY MISSES
   if (enemy.isAttacking && enemy.framesCurrent === 2) {
     enemy.isAttacking = false
   }
 
-  // end game based on health
+  // END GAME (BASED ON HEALTH)
   if (enemy.health <= 0 || player.health <= 0) {
     determineWinner({ player, enemy, timerId })
   }
