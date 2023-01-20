@@ -4,18 +4,22 @@
 * {
     box-sizing: border-box;
     font-family: 'Press Start 2P', cursive;
+    background-color: black;
 }
 
 .display-text {
-    position: absolute;
-    color: white;
+    display: flex;
+    position: relative;
+    /* position: absolute; */
+    color: white; 
     align-items: center;
     justify-content: center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: none;
+    font-size: 2.3rem;
+    /* top: 0; */
+    /* right: 0; */
+    /* bottom: 0; */
+    /* left: 0; */
+    /* display: none; */
 }
 
 #timer {
@@ -61,7 +65,7 @@
 
 .player-health {
     position: relative;
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: flex-end;
     border-top: 4px solid white;
@@ -71,7 +75,7 @@
 
 .enemy-health {
     position: relative;
-    width: 100%;
+    width: 80%;
     border-top: 4px solid white;
     border-bottom: 4px solid white;
     border-right: 4px solid white;
