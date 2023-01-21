@@ -2,7 +2,7 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 // SET THE CANVAS SIZE
-canvas.width = 800
+canvas.width = 1024
 canvas.height = 576
 
 c.fillRect(0, 0, canvas.width, canvas.height)
@@ -22,7 +22,7 @@ const background = new Sprite({
 // SET THE SHOP
 const shop = new Sprite({
   position: {
-    x: 600,
+    x: 350,
     y: 128
   },
   imageSrc: './img/shop.png',
@@ -32,7 +32,7 @@ const shop = new Sprite({
 
 // PLAYER
 const player = new Fighter({
-  position: { x: 0, y: 0},
+  position: { x: 100, y: 0},
   velocity: { x: 0, y: 0},
   offset: { x: 0, y: 0},
   imageSrc: './img/samuraiMack/Idle.png',
@@ -77,7 +77,7 @@ const player = new Fighter({
 })
 
 const enemy = new Fighter({
-  position: { x: 400, y: 100 },
+  position: { x: 900, y: 100 },
   velocity: { x: 0, y: 0 },
   color: 'blue',
   offset: { x: -50, y: 0 },
