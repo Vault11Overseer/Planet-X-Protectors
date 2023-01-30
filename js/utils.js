@@ -25,7 +25,7 @@ function determineWinner({ player, enemy, timerId }) {
 }
 
 // SET THE TIMER
-let timer = 120
+let timer = 91
 // SET TIMER ID
 let timerId
 // COUNT DOWN AND FIRE DETERMINE WINNER
@@ -36,7 +36,5 @@ function decreaseTimer() {
     document.querySelector('#timer').innerHTML = timer
   }
 
-  if (timer === 0) {
-    determineWinner({ player, enemy, timerId })
-  }
+  if (timer === 0) {determineWinner({ player, enemy, timerId })}
 }

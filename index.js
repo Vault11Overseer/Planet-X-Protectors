@@ -16,18 +16,19 @@ const background = new Sprite({
     x: 0,
     y: 0
   },
-  imageSrc: './img/background.png'
+  imageSrc: './img/moon.jpg',
+  scale: 3.25
 })
 
 // SET THE SHOP
 const shop = new Sprite({
   position: {
-    x: 350,
-    y: 128
+    x: 300,
+    y: 74
   },
   imageSrc: './img/shop.png',
-  scale: 2.75,
-  framesMax: 6
+  scale: 0.8,
+  framesMax: 1
 })
 
 // PLAYER
@@ -35,38 +36,38 @@ const player = new Fighter({
   position: { x: 100, y: 0},
   velocity: { x: 0, y: 0},
   offset: { x: 0, y: 0},
-  imageSrc: './img/samuraiMack/Idle.png',
-  framesMax: 8,
-  scale: 2.5,
-  offset: { x: 215, y: 157},
+  imageSrc: './img/cat/Idle.png',
+  framesMax: 4,
+  scale: 4.5,
+  offset: { x: 115, y: 57},
   sprites: {
     idle: {
-      imageSrc: './img/samuraiMack/Idle.png',
-      framesMax: 8
+      imageSrc: './img/cat1/Idle.png',
+      framesMax: 4
     },
     run: {
-      imageSrc: './img/samuraiMack/Run.png',
+      imageSrc: './img/cat1/Run.png',
       framesMax: 8
     },
     jump: {
-      imageSrc: './img/samuraiMack/Jump.png',
+      imageSrc: './img/cat1/Jump.png',
       framesMax: 2
     },
     fall: {
-      imageSrc: './img/samuraiMack/Fall.png',
+      imageSrc: './img/cat1/Jump.png',
       framesMax: 2
     },
     attack1: {
-      imageSrc: './img/samuraiMack/Attack1.png',
+      imageSrc: './img/cat1/Attack1.png',
       framesMax: 6
     },
     takeHit: {
-      imageSrc: './img/samuraiMack/Take Hit - white silhouette.png',
-      framesMax: 4
+      imageSrc: './img/cat1/Jump.png',
+      framesMax: 2
     },
     death: {
-      imageSrc: './img/samuraiMack/Death.png',
-      framesMax: 6
+      imageSrc: './img/cat1/Death.png',
+      framesMax: 7
     }
   },
   attackBox: {
@@ -228,9 +229,7 @@ function animate() {
   }
 
   // END GAME (BASED ON HEALTH)
-  if (enemy.health <= 0 || player.health <= 0) {
-    determineWinner({ player, enemy, timerId })
-  }
+  if (enemy.health <= 0 || player.health <= 0) {determineWinner({ player, enemy, timerId })}
 }
 
 animate()
