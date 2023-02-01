@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JS GAME</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="./assets/player/player.png">
+  <head>
+    <title>JS GAME</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./assets/player/player.png">
+    <script type="module" src="main.js"> </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
-</head>
-<body>
-  <!-- CANVAS -->
-  <canvas id="canvas1"></canvas>
-  <!-- PLAYER -->
-  <img src="./assets/player/player.png" id="player"/>
-  <img src="./assets/player/fire.png" id="fire">
-  <img src="./assets/player/boom.png" id="collisionAnimation">
-  <!-- LEVEL 1 BACKGROUND -->
-  <img src="./assets/level1/background/layer-1.png" id="layer1">
-  <img src="./assets/level1/background/layer-2.png" id="layer2">
-  <img src="./assets/level1/background/layer-3.png" id="layer3">
-  <img src="./assets/level1/background/layer-4.png" id="layer4">
-  <img src="./assets/level1/background/layer-5.png" id="layer5">
-  <!-- LEVEL 1 ENEMIES -->
-  <img src="./assets/level1/enemies/enemy_fly.png" id="enemyFly">
-  <img src="./assets/level1/enemies/enemy_plant.png" id="enemyPlant">
-  <img src="./assets/level1/enemies/enemy_spider_big.png" id="enemySpiderBig">
+        <!-- MAIN STYLE -->
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+    
+          #canvas1 {
+              border: 5px solid black;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              max-width: 100%;
+              max-height: 100%;
+              font-family: 'Creepster', cursive;
+          }
+    
+          #player, #layer1, #layer2, #layer3, #layer4, #layer5, #enemyFly, 
+          #enemyPlant, #enemySpiderBig, #fire, #boom, #collisionAnimation, 
+          #lives {display: none;}
+        </style>
+  </head>
+  <body>
+    <!-- CANVAS -->
+    <canvas id="canvas1"></canvas>
+    <!-- PLAYER -->
+    <img src="./assets/player/player.png" id="player"/>
+    <img src="./assets/player/fire.png" id="fire">
+    <img src="./assets/player/boom.png" id="collisionAnimation">
+    <img src="./assets/player/lives.png" id="lives">
+    <!-- LEVEL 1 BACKGROUND -->
+    <img src="./assets/level1/background/layer-1.png" id="layer1">
+    <img src="./assets/level1/background/layer-2.png" id="layer2">
+    <img src="./assets/level1/background/layer-3.png" id="layer3">
+    <img src="./assets/level1/background/layer-4.png" id="layer4">
+    <img src="./assets/level1/background/layer-5.png" id="layer5">
+    <!-- LEVEL 1 ENEMIES -->
+    <img src="./assets/level1/enemies/enemy_fly.png" id="enemyFly">
+    <img src="./assets/level1/enemies/enemy_plant.png" id="enemyPlant">
+    <img src="./assets/level1/enemies/enemy_spider_big.png" id="enemySpiderBig">
 
-  <!-- MAIN JAVASCRIPT -->
-  <script type="module" src="main.js"> </script>
+    <!-- MAIN STYLE - END-->
 
-  <style>* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#canvas1 {
-    border: 5px solid black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#player, #layer1, #layer2, #layer3, #layer4, #layer5, #enemyFly, #enemyPlant, #enemySpiderBig, #fire, #boom, #collisionAnimation {display: none;}</style>
-</body>
-
+  </body>
 </html>

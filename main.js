@@ -1,13 +1,13 @@
-import { Player } from './player.js';
-import { InputHandler } from './input.js';
-import { Background } from './background.js';
-import { FlyingEnemy, ClimbingEnemy, GroundEnemy } from './enemies.js';
-import { UI } from './UI.js';
+import { Player } from './js/player.js';
+import { InputHandler } from './js/input.js';
+import { Background } from './js/background.js';
+import { FlyingEnemy, ClimbingEnemy, GroundEnemy } from './js/enemies.js';
+import { UI } from './js/UI.js';
 
 window.addEventListener('load', function(){
   const canvas = document.getElementById('canvas1');
   const ctx = canvas.getContext('2d');
-  canvas.width = 500;
+  canvas.width = 900;
   canvas.height = 500;
 
 
@@ -31,9 +31,12 @@ window.addEventListener('load', function(){
       this.enemyInterval = 1000;
       this.debug = true;
       this.score = 0;
+      this.lives = 5;
+      this.floatingMessages = [];
       this.fontColor = 'black';
       this.time = 0;
-      this.maxTime = 20000;
+      this.winningScore = 40;
+      this.maxTime = 30000;
       this.player.currentState = this.player.states[0];
       this.player.currentState.enter();
     }
@@ -54,12 +57,16 @@ window.addEventListener('load', function(){
 
       this.enemies.forEach(enemy => {
         enemy.update(deltaTime);
-        if (enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
+        // if (enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
+      });
+      // MESSAGES
+      this.floatingMessages.forEach(message => {
+        message.update();
       });
       // PARTICLES
       this.particles.forEach((particle, index )=> {
         particle.update();
-        if (particle.markedForDeletion) this.particles.splice(index, 1);
+        // if (particle.markedForDeletion) this.particles.splice(index, 1);
       });
       if(this.particles.length > this.maxParticles) {
         this.particles = this.particles.slice(0, this.maxParticles);
@@ -67,10 +74,13 @@ window.addEventListener('load', function(){
       // SPRITE COLLISIONS
       this.collisions.forEach ((collision, index) => {
         collision.update(deltaTime);
-        if (collision.markedForDeletion) this.collisions.splice(index, 1);
+        // if (collision.markedForDeletion) this.collisions.splice(index, 1);
 
-      })
-
+      });
+      this.enemies = this.enemies.filter(enemy => !enemy.markedForDeletion);
+      this.particles = this.particles.filter(particle => !particle.markedForDeletion);
+      this.collisions = this.collisions.filter(collision => !collision.markedForDeletion);
+      this.floatingMessages = this.floatingMessages.filter(message => !message.markedForDeletion);
     }
 
     draw(context){
@@ -84,6 +94,10 @@ window.addEventListener('load', function(){
       });
       this.collisions.forEach(collision => {
         collision.draw(context);
+      });
+      // MESSAGES
+      this.floatingMessages.forEach(message => {
+        message.draw(context);
       });
       this.UI.draw(context);
     }
