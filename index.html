@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JS GAME</title>
+    <title>FIND A NAME</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="./assets/player/player.png">
+    <!-- JS -->
     <script type="module" src="main.js"> </script>
-
+    <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- MAIN STYLE -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        <!-- MAIN STYLE -->
-        <style>
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
-    
-          #canvas1 {
-              border: 5px solid black;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              max-width: 100%;
-              max-height: 100%;
-              font-family: 'Creepster', cursive;
-          }
-    
-          #player, #layer1, #layer2, #layer3, #layer4, #layer5, #enemyFly, 
-          #enemyPlant, #enemySpiderBig, #fire, #boom, #collisionAnimation, 
-          #lives {display: none;}
-        </style>
+      #canvas1 {
+          border: 5px solid black;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          max-width: 100%;
+          max-height: 100%;
+          font-family: 'Creepster', cursive;
+      }
+
+      #player, #layer1, #layer2, #layer3, #layer4, #layer5, #enemyFly, 
+      #enemyPlant, #enemySpiderBig, #fire, #boom, #collisionAnimation, 
+      #lives {display: none;}
+    </style>
+    <!-- MAIN STYLE - END-->
   </head>
   <body>
     <!-- CANVAS -->
@@ -54,8 +56,5 @@
     <img src="./assets/level1/enemies/enemy_fly.png" id="enemyFly">
     <img src="./assets/level1/enemies/enemy_plant.png" id="enemyPlant">
     <img src="./assets/level1/enemies/enemy_spider_big.png" id="enemySpiderBig">
-
-    <!-- MAIN STYLE - END-->
-
   </body>
 </html>
