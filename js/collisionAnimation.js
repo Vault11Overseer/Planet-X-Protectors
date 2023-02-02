@@ -17,18 +17,16 @@ export class CollisionAnimation {
         this.frametimer = 0;
     }
 
-    draw(context) {
-        context.drawImage(this.image, this.frameX * this.spriteWidth, 0 , this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
-    }
+    draw(context) {context.drawImage(this.image, this.frameX * this.spriteWidth, 0 , this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);}
 
     update(deltaTime){
+
         this.x -= this.game.speed;
+
         if (this.frameTimer > this.frameInterval) {
             this.frameX++;
             this.frametimer = 0;
-        } else {
-            this.frameTimer += deltaTime;
-        }
+        } else {this.frameTimer += deltaTime;}
  
         if (this.frameX > this.maxFrame) this.markedForDeletion = true;
     }
