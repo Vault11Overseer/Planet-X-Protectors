@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>FIND A NAME</title>
+    <title>Mortal CatbAt
+    </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Butcherman&display=swap" rel="stylesheet">
     <!-- MAIN STYLE -->
     <style>
-      * {margin: 0; padding: 0; box-sizing: border-box;}
+      * {margin: 0; padding: 0; box-sizing: border-box; background-color: black; color: white;}
       #canvas1 {border: 5px solid black; position: absolute; top: 50%; 
         left: 50%; transform: translate(-50%, -50%); max-width: 100%; 
         max-height: 100%; font-family: 'Butcherman', cursive;}
@@ -27,6 +28,13 @@
   </head>
   <body>
     <!-- CANVAS -->
+    <div class="controlmap">
+      <h2>Player Controls</h2>
+
+      <p>Run</p>
+      <p>Jump</p>
+      <p>Attack</p>
+    </div>
     <canvas id="canvas1"></canvas>
     <!-- PLAYER -->
     <img src="./assets/player/player.png" id="player"/>
@@ -43,5 +51,10 @@
     <img src="./assets/level1/enemies/enemy_fly.png" id="enemyFly">
     <img src="./assets/level1/enemies/enemy_plant.png" id="enemyPlant">
     <img src="./assets/level1/enemies/enemy_spider_big.png" id="enemySpiderBig">
+
+    <div class="controls">
+      <a href="">Restart</a>
+      <a href="">Pause</a>
+    </div>
   </body>
 </html>
