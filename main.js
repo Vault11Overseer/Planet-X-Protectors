@@ -28,7 +28,7 @@ window.addEventListener('load', function(){
       this.input = new InputHandler(this);
       // UI
       this.UI = new UI(this);
-      this.debug = true;
+      this.debug = false;
       this.floatingMessages = [];
       this.fontColor = 'red';
       // ENEMY

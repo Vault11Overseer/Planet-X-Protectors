@@ -11,7 +11,7 @@ export class UI {
         context.save();
         context.shadowOffsetX = 2;
         context.shadowOffsetY = 2;
-        context.shadowColor = 'white';
+        context.shadowColor = 'black';
         context.shadowBlur = 0;
         // SCORE
         context.font = this.fontSize + 'px ' + this.fontFamily;
