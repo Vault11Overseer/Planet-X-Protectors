@@ -1,5 +1,7 @@
+// HANDLES INPUT CONTROLS
 export class InputHandler{
     constructor(game){
+        // BRING IN GAME AND SET OPEN ARRAY TO PUSH KEY INPUT TOO
         this.game = game;
         this.keys = [];
 
@@ -12,7 +14,7 @@ export class InputHandler{
                 ) && this.keys.indexOf(e.key) === -1){
                 this.keys.push(e.key);
             } else if (e.key === 'd') this.game.debug = !this.game.debug;
-            // console.log(e.key, this.keys);
+            console.log(e.key, this.keys);
         });
     
         window.addEventListener('keyup', e => {
