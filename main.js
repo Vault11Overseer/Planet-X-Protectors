@@ -1,3 +1,4 @@
+// MAIN IMPORTS
 import { Player } from './js/player.js';
 import { InputHandler } from './js/input.js';
 import { Background } from './js/background.js';
