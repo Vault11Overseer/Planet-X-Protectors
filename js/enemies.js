@@ -1,13 +1,19 @@
+// ENEMY CLASS
 class Enemy {
+    // CONSTRUCTOR
     constructor(){
+        // POSITION
         this.frameX = 0;
         this.frameY = 0;
+        // SPEED
         this.fps = 20;
         this.frameInterval = 1000/this.fps;
         this.frameTimer = 0;
+        // DELETE
         this.markedForDeletion = false;
     }
 
+    // DELTATIME?
     update(deltaTime){
         this.x -= this.speedX + this.game.speed;
         this.y += this.speedY;
@@ -18,7 +24,7 @@ class Enemy {
         } else {
             this.frameTimer += deltaTime;
         }
-        // CHECK IF ENEMY IS OFF SCREEN
+        // CHECK IF ENEMY IS OFF SCREEN THEN DELETE
         if (this.x + this.width < 0) this.markedForDeletion = true;
     }
 
