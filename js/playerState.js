@@ -18,6 +18,7 @@ class State {
 }
 
 export class Sitting extends State {
+    
     constructor(game) {
         super('SITTING', game);
     }
@@ -39,6 +40,7 @@ export class Sitting extends State {
 
 
 export class Running extends State {
+
     constructor(game) {
         super('RUNNING', game);
     }
@@ -64,6 +66,7 @@ export class Running extends State {
 }
 
 export class Jumping extends State {
+
     constructor(game) {
         super('JUMPING', game);
     }

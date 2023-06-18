@@ -64,6 +64,7 @@ export class Fire extends Particle {
 
 
 export class Splash extends Particle {
+    
     constructor(game, x, y) {
         super(game);
         this.size = Math.random() * 100 + 100;
