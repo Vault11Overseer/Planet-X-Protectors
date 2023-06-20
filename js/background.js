@@ -1,3 +1,4 @@
+// LAYER CLASS
 class Layer {
 
     constructor(game, width, height, speedModifier, image) {
@@ -11,7 +12,8 @@ class Layer {
     }
 
     update(){
-        if (this.x < -this.width) this.x = 0;
+        if (this.x < this.width) this.x = 0;
+        // if (this.x < -this.width) this.x = 0;
         else this.x -= this.game.speed * this.speedModifier;
     }
 
@@ -21,6 +23,7 @@ class Layer {
     }
 }
 
+// BACKGROUND CLASS
 export class Background {
     
     constructor(game){
