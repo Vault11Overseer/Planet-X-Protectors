@@ -1,9 +1,11 @@
+// COLLISION ANIMATION CLASS
 export class CollisionAnimation {
     
     constructor(game, x, y){
-
+        // GET SPRITE
         this.game = game;
-        this.image = document.getElementById('collisionAnimation')
+        this.image = document.getElementById('collisionAnimation');
+        // SPRITE SIZE
         this.spriteWidth = 100;
         this.spriteHeight = 90;
         this.sizeModifier = Math.random() + 0.5;
@@ -11,6 +13,7 @@ export class CollisionAnimation {
         this.height = this.spriteHeight * this.sizeModifier;
         this.x = x - this.width * 0.5;
         this.y = y - this.height * 0.5;
+        // SPRITE SET FRAME
         this.frameX = 0;
         this.maxFrame = 4;
         this.markedForDeletion = false;
