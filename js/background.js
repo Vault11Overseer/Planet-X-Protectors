@@ -1,6 +1,6 @@
 // LAYER CLASS
 class Layer {
-
+    // CONSTRUCTOR METHOD
     constructor(game, width, height, speedModifier, image) {
         this.game = game;
         this.width = width;
@@ -42,7 +42,7 @@ export class Background {
         this.layer5 = new Layer(this.game, this.backgroundWidth, this.backgroundHeight, 1 , this.layer5image);
         this.backgroundLayers = [this.layer1, this.layer2, this.layer3, this.layer4, this.layer5];
     }
-
+    // UPDATE & DRAW
     update(){this.backgroundLayers.forEach(layer => {layer.update();})};
     draw(context){this.backgroundLayers.forEach(layer => {layer.draw(context);});
     

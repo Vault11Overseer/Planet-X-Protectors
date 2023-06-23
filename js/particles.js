@@ -13,7 +13,7 @@ class Particle {
     }
 }
 
-
+// DUST PARTICLES CLASS
 export class Dust extends Particle {
     constructor(game, x, y) {
         super(game);
@@ -33,7 +33,7 @@ export class Dust extends Particle {
     }
 }
 
-
+FIRE CLESS
 export class Fire extends Particle {
     constructor(game, x, y) {
         super(game);
