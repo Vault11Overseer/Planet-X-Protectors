@@ -33,7 +33,7 @@ export class Dust extends Particle {
     }
 }
 
-FIRE CLESS
+// FIRE PARTICLE CLASS
 export class Fire extends Particle {
     constructor(game, x, y) {
         super(game);
@@ -46,13 +46,14 @@ export class Fire extends Particle {
         this.angle = 0;
         this.va = Math.random() * 0.2 - 0.1
     };
-
+    // UPDATE
     update () {
         super.update();
         this.angle += this.va;
         this.x += Math.sin(this.angle * 10)
     }
 
+    // DRAW
     draw(context) {
         context.save();
         context.translate(this.x, this.y);
