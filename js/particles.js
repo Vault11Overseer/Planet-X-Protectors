@@ -52,7 +52,6 @@ export class Fire extends Particle {
         this.angle += this.va;
         this.x += Math.sin(this.angle * 10)
     }
-
     // DRAW
     draw(context) {
         context.save();
@@ -63,9 +62,9 @@ export class Fire extends Particle {
     }
 }
 
-
+// SPLASH PARTICLE CLASS
 export class Splash extends Particle {
-    
+    // CONSTRUCTOR
     constructor(game, x, y) {
         super(game);
         this.size = Math.random() * 100 + 100;
@@ -76,13 +75,13 @@ export class Splash extends Particle {
         this.gravity = 0;
         this.image = document.getElementById('fire');
     }
-
+    // UPDATE
     update(){
         super.update();
         this.gravity += 0.1;
         this.y += this.gravity;
     }
-
+    // DRAW
     draw(context){
         context.drawImage(this.image, this.x, this.y, this.size, this.size);
     }
