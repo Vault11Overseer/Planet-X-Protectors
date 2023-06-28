@@ -52,16 +52,16 @@ export class Player {
             this.frameTimer += deltaTime;
         }
     }
-
+    // DRAW
     draw(context){
         if (this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height);
         context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height,this.width, this.height, this.x, this.y, this.width, this.height);
     }
-
+    // ON THE GROUND
     onTheGround(){
         return this.y >= this.game.height - this.height - this.game.groundMargin;
     }
-
+    // SET STATE
     setState(state, speed){
         this.currentState = this.states[state];
         this.game.speed = this.game.maxSpeed * speed;
