@@ -67,7 +67,7 @@ export class Player {
         this.game.speed = this.game.maxSpeed * speed;
         this.currentState.enter();
     }
-
+    // CHECK FOR COLLISION
     checkCollision(){
         this.game.enemies.forEach(enemy => {
             if (

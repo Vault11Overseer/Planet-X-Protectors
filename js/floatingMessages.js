@@ -1,3 +1,4 @@
+// FLOATING MESSAGES CLASS
 export class FloatingMessage {
     constructor(value, x, y, targetX, targetY){
         this.value = value;
@@ -9,14 +10,14 @@ export class FloatingMessage {
         this.timer = 0;
 
     }
-
+    // UPDATE
     update(){
         this.x += (this.targetX -this.x) * 0.03;
         this.y += (this.targetY - this.y) * 0.03;
         this.timer++;
         if (this.timer > 100) this.markedForDeletion = true;
     }
-
+    // DRAW
     draw(context){
         context.font = '20px Butcherman';
         context.fillStyle = 'white';
