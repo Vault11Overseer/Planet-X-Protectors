@@ -4,7 +4,7 @@ export class InputHandler{
         // BRING IN GAME AND SET OPEN ARRAY TO PUSH KEY INPUT TOO
         this.game = game;
         this.keys = [];
-
+        // INPUT / KEYDOWN
         window.addEventListener('keydown', e => {
             if(( e.key === 'ArrowDown' ||
                 e.key === 'ArrowUp' ||
@@ -16,7 +16,7 @@ export class InputHandler{
             } else if (e.key === 'd') this.game.debug = !this.game.debug;
             console.log(e.key, this.keys);
         });
-    
+        // OUTPUT / KEYUP
         window.addEventListener('keyup', e => {
             if( e.key === 'ArrowDown' ||
                 e.key === 'ArrowUp' ||
