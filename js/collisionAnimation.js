@@ -1,6 +1,6 @@
 // COLLISION ANIMATION CLASS
 export class CollisionAnimation {
-    
+    // CONSTRUCTOR
     constructor(game, x, y){
         // GET SPRITE
         this.game = game;
@@ -22,9 +22,11 @@ export class CollisionAnimation {
         this.frametimer = 0;
 
     }
-
-    draw(context) {context.drawImage(this.image, this.frameX * this.spriteWidth, 0 , this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);}
-
+    // DRAW
+    draw(context) {
+        context.drawImage(this.image, this.frameX * this.spriteWidth, 0 , this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);}
+    
+    // UPDATE
     update(deltaTime){
 
         this.x -= this.game.speed;
