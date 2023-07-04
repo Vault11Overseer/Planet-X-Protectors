@@ -1,5 +1,7 @@
+// PLAYER STATE
 import { Dust, Fire, Splash } from './particles.js'
 
+// STATE OBJECT
 const states = {
     SITTING: 0,
     RUNNING: 1,
