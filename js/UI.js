@@ -1,13 +1,18 @@
+// USER INTERFACE CLASS
 export class UI {
 
     constructor(game) {
+        // BRING IN GAME
         this.game = game;
+        // FONT SIZE
         this.fontSize = 30;
+        // FONT tYPE
         this.fontFamily = 'Butcherman';
         this.livesImage = document.getElementById('lives');
     }
 
     draw(context){
+        console.log(context);
         context.save();
         context.shadowOffsetX = 2;
         context.shadowOffsetY = 2;
