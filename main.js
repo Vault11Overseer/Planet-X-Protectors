@@ -109,7 +109,12 @@ window.addEventListener('load', function(){
 
   // CALL NEW GAME
   const game = new Game(canvas.width, canvas.height);
-  console.log(game);
+  // console.log(game);
+
+  // PAUSE GAME
+  function pauseGame(){
+    console.log("hello");
+  }
 
 
   // TIME STAMP

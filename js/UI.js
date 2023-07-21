@@ -12,7 +12,7 @@ export class UI {
     }
 
     draw(context){
-        console.log(context);
+        // console.log(context);
         context.save();
         context.shadowOffsetX = 2;
         context.shadowOffsetY = 2;

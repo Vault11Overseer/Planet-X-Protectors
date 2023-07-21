@@ -3,6 +3,7 @@ export class InputHandler{
     constructor(game){
         // BRING IN GAME AND SET OPEN ARRAY TO PUSH KEY INPUT TOO
         this.game = game;
+        // KEYS ARRAY IN WHICH TO PUSH INTO
         this.keys = [];
         // INPUT / KEYDOWN
         window.addEventListener('keydown', e => {
@@ -14,7 +15,7 @@ export class InputHandler{
                 ) && this.keys.indexOf(e.key) === -1){
                 this.keys.push(e.key);
             } else if (e.key === 'd') this.game.debug = !this.game.debug;
-            console.log(e.key, this.keys);
+            // console.log(e.key, this.keys);
         });
         // OUTPUT / KEYUP
         window.addEventListener('keyup', e => {

@@ -24,7 +24,7 @@
 
       * {margin: 0; padding: 0; box-sizing: border-box; background-color: black; color: white;}
 
-      #canvas1 {border: 3px solid white; position: absolute; top: 50%; 
+      #canvas1 {border: 3px solid white; position: absolute; top: 40%; 
         left: 50%; transform: translate(-50%, -50%); max-width: 100%; 
         max-height: 100%; font-family: 'Butcherman', cursive;}
     
@@ -32,68 +32,78 @@
       #enemyPlant, #enemySpiderBig, #fire, #boom, #collisionAnimation, 
       #lives {display: none;}
 
-      .player_control_map {
+      .game_control_center {
         display: flex;
-        gap: 1rem;
-        border: 5px solid white; 
-        position: absolute; top: 90%; 
-        left: 50%; 
-        transform: translate(-50%, -50%);
-        padding: 1rem 2rem;
-        /* min-width: 700px; */
-        width: 100%;
-        max-width: 30%; 
         justify-content: center;
-        margin-top: 1rem;
-        align-content: center;
+        align-items: center;
+        border-radius: 10px 10px 0 0;
+        gap: 1em;
+        border: 5px solid white; 
+        position: absolute; top: 75%; 
+        left: 50%; 
+        max-height: 100%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
+
+ 
+
+      .player_control_map {
+        padding: 20px 0 20px 20px;
+        display: flex;
+        border-left: 5px solid white;
+        height: 100%;
+        flex: 1;
+
       }
 
       .player_control_map h2 {
         font-family: 'Butcherman', cursive;
-        padding: 0.6rem 3rem 0 0;
+        padding: 0.6rem 2rem 0 0;
         border-right: 2px solid white;
       }
 
-      .controls {
-        gap: 3rem;
-        border: 5px solid black; 
-        position: absolute; 
-        top: 10%; 
-        left: 50%; 
+      .player_control_text {
+        padding-left: 2rem;
+      }
+
+      strong {text-decoration: underline;}
+
+      .button_box {
         display: flex;
-        flex-direction: row;
-        transform: translate(-50%, -50%);
-        font-family: 'Butcherman', cursive;
+        gap: 2rem;
+        padding: 0 2rem 0 3rem;
       }
 
       .btn {border-radius: 10px;}
 
       .button {
-        padding: 0.6rem 1rem;
+        padding: 1.3rem 1rem;
         background-color: white;
         color: black;
-        font-size: 1.3rem
+        font-size: 1.3rem;
       }
 
       .button:hover {
-        background: black;
-        color: white;
-        border: 2px solid white;
+        /* background: black; */
+        /* color: white; */
+        /* border: 2px solid white; */
+        transform: scale(1.1);
       }
       
-      strong {
-        text-decoration: underline;
-      }
+      .button {
+        background-color: aliceblue;
+    height: 70px;
+    width: 70px;
+}
 
     </style>
     <!-- MAIN STYLE - END-->
   </head>
   <body>
 
-    <div class="game_controls">
-      <a class="button" href="">Restart</a>
-      <a class="button btn" href="">Pause</a>
-    </div>
+    <!-- <div class="game_controls">
+    </div> -->
 
     <!-- CANVAS -->
     <canvas id="canvas1"></canvas>
@@ -114,14 +124,30 @@
     <img src="./assets/level1/enemies/enemy_plant.png" id="enemyPlant">
     <img src="./assets/level1/enemies/enemy_spider_big.png" id="enemySpiderBig">
 
-    <div class="player_control_map">
-      <h2>Player Controls</h2>
-      <div class="text">
-        <p><strong>Attack:</strong> ENTER <em>(Hold)</em></p>
-        <p><strong>Run:</strong> Left / Right Arrow</p>
-        <p><strong>Jump:</strong> Up Arrow</p>
+    <div class="game_control_center">
+      <div class="button_box">
+        <div>
+          <a href="."><img src="./assets/game/restart.png" alt="Submit" id="restart" class="button"></a>
+        </div>
+        <div>
+          <a onclick="pauseGame();" ><img src="./assets/game/playpause.png" alt="Submit" id="pause" class="button btn"></a>
+        </div>
+      </div>
+      <div class="player_control_map">
+        <h2>Player Controls</h2>
+        <div class="player_control_text">
+          <p><strong>Attack:</strong> ENTER <em>(Hold)</em></p>
+          <p><strong>Run:</strong> Left / Right Arrow</p>
+          <p><strong>Jump:</strong> Up Arrow</p>
+        </div>
       </div>
     </div>
+
+    <!-- <div class="player_control_map">
+    
+    </div> -->
     
   </body>
-</html>
+
+
+  </html>
