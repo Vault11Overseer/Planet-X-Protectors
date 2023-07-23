@@ -10,13 +10,13 @@ class Layer {
         this.x = 0;
         this.y = 0;
     }
-
+    // UPDATE
     update(){
         if (this.x < this.width) this.x = 0;
         // if (this.x < -this.width) this.x = 0;
         else this.x -= this.game.speed * this.speedModifier;
     }
-
+    // DRAW
     draw(context){
         context.drawImage(this.image, this.x, this.y, this.width, this.height);
         context.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
