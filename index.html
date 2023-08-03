@@ -44,6 +44,7 @@
         max-height: 100%;
         transform: translate(-50%, -50%);
         width: 100%;
+        max-width:1000px;
       }
 
  
@@ -54,7 +55,7 @@
         border-left: 5px solid white;
         height: 100%;
         flex: 1;
-
+        justify-content: space-around;
       }
 
       .player_control_map h2 {
@@ -126,12 +127,12 @@
 
     <div class="game_control_center">
       <div class="button_box">
-        <!-- <div>
-          <a href="."><img src="./assets/game/restart.png" alt="Submit" id="restart" class="button"></a>
-        </div> -->
         <div>
-          <a onclick="pauseGame();" ><img src="./assets/game/playpause.png" alt="Submit" id="pause" class="button btn"></a>
+          <a href="."><img src="./assets/game/restart.png" alt="Submit" id="restart" class="button"></a>
         </div>
+        <!-- <div>
+          <a onclick="pauseGame();" ><img src="./assets/game/playpause.png" alt="Submit" id="pause" class="button btn"></a>
+        </div> -->
       </div>
       <div class="player_control_map">
         <h2>Player Controls</h2>
