@@ -44,10 +44,10 @@
         max-height: 100%;
         transform: translate(-50%, -50%);
         width: 100%;
-        max-width:1000px;
+        max-width:970px;
       }
 
- 
+      .player_control_text {padding-left: 2rem;}
 
       .player_control_map {
         padding: 20px 0 20px 20px;
@@ -55,27 +55,22 @@
         border-left: 5px solid white;
         height: 100%;
         flex: 1;
-        justify-content: space-around;
+        max-width: 70%;
       }
 
       .player_control_map h2 {
         font-family: 'Butcherman', cursive;
-        padding: 0.6rem 2rem 0 0;
+        padding: 0.6rem 2rem 0 2rem;
         border-right: 2px solid white;
-      }
-
-      .player_control_text {
-        padding-left: 2rem;
       }
 
       strong {text-decoration: underline;}
 
       .button_box {
-        display: flex;
-        gap: 2rem;
         padding: 0 2rem 0 3rem;
+        margin: 0 auto;
       }
-
+      
       .btn {border-radius: 10px;}
 
       .button {
@@ -85,30 +80,21 @@
         font-size: 1.3rem;
       }
 
-      .button:hover {
-        /* background: black; */
-        /* color: white; */
-        /* border: 2px solid white; */
-        transform: scale(1.1);
-      }
+      .button:hover {transform: scale(1.1);}
       
       .button {
         background-color: aliceblue;
-    height: 70px;
-    width: 70px;
-}
+        height: 70px;
+        width: 70px;
+      }   
 
     </style>
     <!-- MAIN STYLE - END-->
   </head>
   <body>
 
-    <!-- <div class="game_controls">
-    </div> -->
-
     <!-- CANVAS -->
     <canvas id="canvas1"></canvas>
-
     <!-- PLAYER -->
     <img src="./assets/player/player.png" id="player"/>
     <img src="./assets/player/fire.png" id="fire">
@@ -127,12 +113,7 @@
 
     <div class="game_control_center">
       <div class="button_box">
-        <div>
           <a href="."><img src="./assets/game/restart.png" alt="Submit" id="restart" class="button"></a>
-        </div>
-        <!-- <div>
-          <a onclick="pauseGame();" ><img src="./assets/game/playpause.png" alt="Submit" id="pause" class="button btn"></a>
-        </div> -->
       </div>
       <div class="player_control_map">
         <h2>Player Controls</h2>
@@ -143,10 +124,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="player_control_map">
-    
-    </div> -->
     
   </body>
 

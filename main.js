@@ -87,7 +87,7 @@ window.addEventListener('load', function(){
       this.collisions = this.collisions.filter(collision => !collision.markedForDeletion);
       this.floatingMessages = this.floatingMessages.filter(message => !message.markedForDeletion);
     }
-
+    // DRAW
     draw(context){
       this.background.draw(context);
       this.player.draw(context);

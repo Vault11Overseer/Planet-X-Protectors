@@ -51,7 +51,6 @@ export class Running extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 8;
         this.game.player.frameY = 3;
-
     }
 
     handleInput(input){
