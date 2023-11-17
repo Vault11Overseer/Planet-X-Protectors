@@ -4,9 +4,11 @@ class Planet {
         this.x = this.game.width * 0.5;
         this.y = this.game.height * 0.5;
         this.radius = 80;
+        this.image = document.getElementById('planet');
     }
 
     draw(context) {
+        context.drawImage(this.image, this.x - 100, this.y - 100);
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.stroke();
@@ -20,6 +22,10 @@ class Game {
         this.wdith = this.canvas.width;
         this.height = this.canvas.height;
         this.planet = new Planet(this);
+
+        window.addEventListener('mousemove', e => {
+            console.log(e);
+        })
     }
 
     render(context){
@@ -35,6 +41,7 @@ window.addEventListener('load', function (){
     canvas.height = 800;
     ctx.strokeStyle = 'white';
     ctx.lineWidth = 2;
+
     const game = new Game(canvas);
     game.render(ctx);
 }
