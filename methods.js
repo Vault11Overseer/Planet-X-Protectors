@@ -10,11 +10,11 @@ class Planet {
     }
     // DRAW
     draw(context) {
+        
         context.drawImage(this.image, this.x - 100, this.y - 100);
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.stroke();
-        
     }
 }
 
@@ -26,18 +26,28 @@ class Player {
         this.y = this.game.height * 0.5;
         this.radius = 40;
         this.image = document.getElementById('player');
+        this.aim;
+        this.angle = 0;
     }
 
     draw(context){
-        context.drawImage(this.image, this.x - this.radius, this.y - this.radius);
+        context.save();
+        context.translate(this.x, this.y);
+        context.rotate(this.angle)
+        context.drawImage(this.image, -this.radius, -this.radius);
         context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        context.arc(0, 0, this.radius, 0, Math.PI * 2);
         context.stroke();
+        context.restore();
+
     }
 
     update() {
-        this.x = this.game.mouse.x;
-        this.y = this.game.mouse.y;
+        this.aim = this.game.calcAim(this.game.planet, this.game.mouse );
+        // console.log(this.aim);
+        this.x = this.game.planet.x + (this.game.planet.radius + this.radius) * this.aim[0];
+        this.y = this.game.planet.y + (this.game.planet.radius + this.radius) * this.aim[1];
+        this.angle = Math.atan2(this.aim[3], this.aim[2]);
 
     }
 }
@@ -52,12 +62,17 @@ class Game {
         this.planet = new Planet(this);
         this.player = new Player(this);
         this.mouse = {x:0, y:0};
+        this.debug = true;
 
         // MOUSE MOVE EVENT
         window.addEventListener('mousemove', e => {
             console.log(e);
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
+        });
+
+        window.addEventListener('keyup', e => {
+            if(e.key === 'd') this.debug = !this.debug;
         })
     }
 
@@ -75,8 +90,8 @@ class Game {
         const dx = a.x - b.x;
         const dy = a.y - b.y;
         const distance = Math.hypot(dx, dy);
-        const aimX = dx / distance;
-        const aimY = dy / distance;
+        const aimX = dx / distance * -1;
+        const aimY = dy / distance * -1;
         return [ aimX, aimY, dx, dy ];
     }
 }
