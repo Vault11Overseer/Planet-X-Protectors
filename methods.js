@@ -12,9 +12,12 @@ class Planet {
     draw(context) {
         
         context.drawImage(this.image, this.x - 100, this.y - 100);
-        context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        context.stroke();
+        if(this.game.debug){
+            context.beginPath();
+            context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            context.stroke();
+        }
+        
     }
 }
 
@@ -35,9 +38,11 @@ class Player {
         context.translate(this.x, this.y);
         context.rotate(this.angle)
         context.drawImage(this.image, -this.radius, -this.radius);
-        context.beginPath();
-        context.arc(0, 0, this.radius, 0, Math.PI * 2);
-        context.stroke();
+        if (this.game.debug){
+            context.beginPath();
+            context.arc(0, 0, this.radius, 0, Math.PI * 2);
+            context.stroke();    
+        }
         context.restore();
 
     }
@@ -52,6 +57,38 @@ class Player {
     }
 }
 
+// PROJECTILE CLASS
+ class Projectile {
+    constructor (game) {
+        this.game = game;
+        this.x;
+        this.y;
+        this.radius = 20;
+        this.free = true;
+    }
+
+    start(){
+
+    }
+
+    reset(){
+
+    }
+
+    draw(context){
+        if(!this.free){
+            context.beginPath();
+            context.arc(this.x, this.y, this.radius, 0, Math.PI);
+        }
+    }
+
+    update(){
+        if(!this.free){
+
+        }
+    }
+    
+ }
 // GAME CLASS
 class Game {
     // GAME CONSTRUCTOR
@@ -80,10 +117,15 @@ class Game {
         this.planet.draw(context);
         this.player.draw(context);
         this.player.update();
+        // LINE TO MOUSE
         context.beginPath();
         context.moveTo(this.planet.x, this.planet.y);
         context.lineTo(this.mouse.x, this.mouse.y);
-        context.stroke();
+        // context.stroke();
+        // if (this.game.debug){
+           
+        // };d
+        
     }
 
     calcAim(a,b){
