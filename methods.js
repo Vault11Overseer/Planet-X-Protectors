@@ -64,30 +64,34 @@ class Player {
         this.x;
         this.y;
         this.radius = 20;
+        this.speedX = 1;
+        this.speedY = 1;
         this.free = true;
     }
 
     start(){
-
+        this.free = false;
     }
 
     reset(){
-
+        this.free = false;
     }
 
     draw(context){
         if(!this.free){
             context.beginPath();
-            context.arc(this.x, this.y, this.radius, 0, Math.PI);
+            context.arc(this.x, this.y, this.radius, 0, Math.PI *2);
         }
     }
 
     update(){
         if(!this.free){
-
+            this.x += this.speedX;
+            this.y += this.speedY;
+        
         }
     }
-    
+
  }
 // GAME CLASS
 class Game {
@@ -101,12 +105,22 @@ class Game {
         this.mouse = {x:0, y:0};
         this.debug = true;
 
+        this.projectPool = [];
+        this.numberOfProjectiles = 5;
+        this.createProjectilePool();
+
         // MOUSE MOVE EVENT
         window.addEventListener('mousemove', e => {
             console.log(e);
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
         });
+
+        window.addEventListener('mousedown', e => {
+            this.mouse.x = e.offsetX;
+            this.mouse.y = e.offsetY;
+            this.player.shoot();
+        } )
 
         window.addEventListener('keyup', e => {
             if(e.key === 'd') this.debug = !this.debug;
@@ -135,6 +149,18 @@ class Game {
         const aimX = dx / distance * -1;
         const aimY = dy / distance * -1;
         return [ aimX, aimY, dx, dy ];
+    }
+
+    createProjectilePool(){
+        for (let i = 0; i < this.numberOfProjectiles; i++){
+            this.projectPool.push(new Projectile(this))
+        }
+    }
+
+    getProjectile(){
+        for (let i = 0; i < this.projectPool.length; i++){
+            if(this.projectPool[i].free) return this.projectPool[i];
+        }
     }
 }
 
