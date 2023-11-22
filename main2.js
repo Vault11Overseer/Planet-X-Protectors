@@ -113,7 +113,7 @@ window.addEventListener('load', function(){
 
   // PAUSE GAME
   function pauseGame(){
-    console.log("hello");
+    // console.log("hello");
   }
 
 

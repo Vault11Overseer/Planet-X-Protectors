@@ -55,6 +55,12 @@ class Player {
         this.angle = Math.atan2(this.aim[3], this.aim[2]);
 
     }
+
+    shoot(){
+        const projectile = this.game.getProjectile();
+        if(projectile) projectile.start(this.x, this.y);
+        // console.log(projectile);
+    }
 }
 
 // PROJECTILE CLASS
@@ -69,8 +75,10 @@ class Player {
         this.free = true;
     }
 
-    start(){
+    start(x, y){
         this.free = false;
+        this.x = x;
+        this.y = y;
     }
 
     reset(){
@@ -79,8 +87,12 @@ class Player {
 
     draw(context){
         if(!this.free){
+            context.save();
             context.beginPath();
             context.arc(this.x, this.y, this.radius, 0, Math.PI *2);
+            context.fillStyle = 'gold';
+            context.fill();
+            context.restore();
         }
     }
 
@@ -108,10 +120,11 @@ class Game {
         this.projectPool = [];
         this.numberOfProjectiles = 5;
         this.createProjectilePool();
+        // console.log(this.projectPool);
 
         // MOUSE MOVE EVENT
         window.addEventListener('mousemove', e => {
-            console.log(e);
+            // console.log(e);
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
         });
@@ -131,10 +144,14 @@ class Game {
         this.planet.draw(context);
         this.player.draw(context);
         this.player.update();
+        this.projectPool.forEach(projectile => {
+            projectile.draw(context);
+            projectile.update();
+        } )
         // LINE TO MOUSE
-        context.beginPath();
-        context.moveTo(this.planet.x, this.planet.y);
-        context.lineTo(this.mouse.x, this.mouse.y);
+        // context.beginPath();
+        // context.moveTo(this.planet.x, this.planet.y);
+        // context.lineTo(this.mouse.x, this.mouse.y);
         // context.stroke();
         // if (this.game.debug){
            
