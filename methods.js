@@ -59,12 +59,13 @@ class Player {
     shoot(){
         const projectile = this.game.getProjectile();
         if(projectile) projectile.start(this.x, this.y);
-        // console.log(projectile);
+        console.log(projectile);
     }
 }
 
 // PROJECTILE CLASS
  class Projectile {
+    // CONSTRUCTOR METHOD FOR PROJECTILE
     constructor (game) {
         this.game = game;
         this.x;
@@ -75,16 +76,21 @@ class Player {
         this.free = true;
     }
 
+    // START METHOD FOR PROJECTILE
     start(x, y){
         this.free = false;
         this.x = x;
         this.y = y;
+        // this.speedX = speedX;
+        // this.speedY = speedY;
     }
 
+    // RESET METHOD FOR PROJECTILE
     reset(){
-        this.free = false;
+        this.free = true;
     }
 
+    // DRAW METHOD FOR PROJECTILE
     draw(context){
         if(!this.free){
             context.save();
@@ -96,11 +102,16 @@ class Player {
         }
     }
 
+    // UPDATE METHOD FOR PROJECTILE
     update(){
         if(!this.free){
             this.x += this.speedX;
             this.y += this.speedY;
         
+            // RESET IF OUTSIDE THE VISIBLE GAME AREA
+            if (this.x < 0 || this.x > this.game.width || this.y < 0 || this.y > this.game.height){
+                this.reset();
+            }
         }
     }
 
@@ -129,11 +140,12 @@ class Game {
             this.mouse.y = e.offsetY;
         });
 
+        // MOUSE DOWN EVENT
         window.addEventListener('mousedown', e => {
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
             this.player.shoot();
-        } )
+        });
 
         window.addEventListener('keyup', e => {
             if(e.key === 'd') this.debug = !this.debug;
@@ -155,7 +167,7 @@ class Game {
         // context.stroke();
         // if (this.game.debug){
            
-        // };d
+        // };
         
     }
 
@@ -170,7 +182,7 @@ class Game {
 
     createProjectilePool(){
         for (let i = 0; i < this.numberOfProjectiles; i++){
-            this.projectPool.push(new Projectile(this))
+            this.projectPool.push(new Projectile(this));
         }
     }
 
