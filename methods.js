@@ -8,10 +8,11 @@ class Planet {
         this.radius = 80;
         this.image = document.getElementById('planet');
     }
-    // DRAW
+    // PLANET DRAW
     draw(context) {
-        
+        // DRAW PLANET IMAGE
         context.drawImage(this.image, this.x - 100, this.y - 100);
+        // DEBUG OPTION
         if(this.game.debug){
             context.beginPath();
             context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -21,8 +22,11 @@ class Planet {
     }
 }
 
+
+
 // PLAYER CLASS
 class Player {
+    // PLAYER CONSTRUCTOR
     constructor(game){
         this.game = game;
         this.x = this.game.width * 0.5;
@@ -33,11 +37,13 @@ class Player {
         this.angle = 0;
     }
 
+    // DRAW PLAYER
     draw(context){
         context.save();
         context.translate(this.x, this.y);
         context.rotate(this.angle)
         context.drawImage(this.image, -this.radius, -this.radius);
+        // DEBUG FEATURE
         if (this.game.debug){
             context.beginPath();
             context.arc(0, 0, this.radius, 0, Math.PI * 2);
@@ -47,6 +53,7 @@ class Player {
 
     }
 
+    // PLAYER UPDATE
     update() {
         this.aim = this.game.calcAim(this.game.planet, this.game.mouse );
         // console.log(this.aim);
@@ -56,6 +63,7 @@ class Player {
 
     }
 
+    // PLAYER SHOOT
     shoot(){
         const projectile = this.game.getProjectile();
         if(projectile) projectile.start(this.x + this.radius * this.aim[0], this.y + this.radius * this.aim[1], this.aim[0], this.aim[1]);
@@ -65,7 +73,7 @@ class Player {
 
 // PROJECTILE CLASS
  class Projectile {
-    // CONSTRUCTOR METHOD FOR PROJECTILE
+    // PROJECTILE CONSTRUCTOR
     constructor (game) {
         this.game = game;
         this.x;
@@ -77,7 +85,7 @@ class Player {
         this.free = true;
     }
 
-    // START METHOD FOR PROJECTILE
+    // PROJECTILE START
     start(x, y, speedX, speedY){
         this.free = false;
         this.x = x;
@@ -86,13 +94,14 @@ class Player {
         this.speedY = speedY * this.speedModifier;
     }
 
-    // RESET METHOD FOR PROJECTILE
+    // PROJECTILE RESET
     reset(){
         this.free = true;
     }
 
-    // DRAW METHOD FOR PROJECTILE
+    // PROJECTILE DRAW
     draw(context){
+        // IF FREE IN POOL
         if(!this.free){
             context.save();
             context.beginPath();
@@ -103,7 +112,7 @@ class Player {
         }
     }
 
-    // UPDATE METHOD FOR PROJECTILE
+    // PROJECTILE UPDATE
     update(){
         if(!this.free){
             this.x += this.speedX;
@@ -120,7 +129,7 @@ class Player {
 
 // ENEMY CLASS
 class Enemy {
-
+    // ENEMY CONSTRUCTOR
     constructor(game){
         this.game = game;
         this. x = 0;
@@ -135,6 +144,7 @@ class Enemy {
         this.free = true;
     }
 
+    // ENEMY START
     start(){
         this.free = false;
         this.collided =false;
@@ -154,10 +164,12 @@ class Enemy {
         this.angle = Math.atan2(aim[3], aim[2]) + Math.PI * 0.5;
     }
 
+    // ENEMY RESET
     reset(){
         this.free = true;
     }
 
+    // ENEMY HIT
     hit(damage){
         this.lives -= damage;
         if(this.lives >= 1){
@@ -165,12 +177,14 @@ class Enemy {
         }
     }
 
+    // ENEMY DRAW
     draw(context){
         if(!this.free){
             context.save();
             context.translate(this.x, this.y);
             context.rotate(this.angle);
             context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, -this.radius, - this.radius, this.width, this.height);
+            // DEBUG OPTION
             if(this.game.debug){
                 context.beginPath();
                 context.arc(0,0 , this.radius, 0, Math.PI * 2);
@@ -182,6 +196,7 @@ class Enemy {
         }
     }
 
+    // ENY UPDATE
     update(){
         if(!this.free){
             this.x += this.speedX;
@@ -223,6 +238,7 @@ class Enemy {
 
 // ASTEROID ENEMY CLASS
 class Asteroid extends Enemy {
+    // ASTEROID CONSTRUCTOR 
     constructor(game){
         super(game);
         this.image = document.getElementById('asteroid');
@@ -236,6 +252,7 @@ class Asteroid extends Enemy {
 
 // LOBSTER ENEMY CLASS
 class Lobster extends Enemy {
+    // LOBSTER CONSTRUCTOR
     constructor(game){
         super(game);
         this.image = document.getElementById('lobster');
@@ -302,6 +319,7 @@ class Game {
         })
     }
 
+    // GAME RENDER
     render(context, deltaTime){
         this.planet.draw(context);
         this.drawStatusText(context);
