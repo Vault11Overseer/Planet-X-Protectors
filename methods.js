@@ -1,3 +1,5 @@
+// import Player from '/classes/Player';
+
 // PLANET CLASS 
 class Planet {
     // PLANET CONSTRUCTOR
@@ -21,7 +23,6 @@ class Planet {
         
     }
 }
-
 
 
 // PLAYER CLASS
@@ -70,6 +71,7 @@ class Player {
         // console.log(projectile);
     }
 }
+
 
 // PROJECTILE CLASS
  class Projectile {
@@ -196,12 +198,13 @@ class Enemy {
         }
     }
 
-    // ENY UPDATE
+    // ENEMY UPDATE
     update(){
         if(!this.free){
             this.x += this.speedX;
             this.y += this.speedY;
-            // PLANET COLLISION
+
+            // ENEMY / PLANET COLLISION
             if (this.game.checkCollision(this, this.game.planet)){
                 this.lives = 0;
                 this.speedX = 0;
@@ -209,13 +212,13 @@ class Enemy {
                 this.collided = true;
 
             }
-             // PLAYER COLLISION
+             // ENEMY / PLAYER COLLISION
              if (this.game.checkCollision(this, this.game.player)){
-                this.lives =0;
+                this.lives = 0;
                 this.collided = true;
             }
 
-            // check collision
+            // ENEMY / PROJECTILE COLLISION CHECK
             this.game.projectPool.forEach(projectile => {
                 if(!projectile.free && this.game.checkCollision(this, projectile) && this.lives >=1){
                     projectile.reset();
@@ -225,7 +228,7 @@ class Enemy {
 
             //sprite animation
             if(this.lives < 1 && this.game.spriteUpdate) {
-                this.frameX++;1111
+                this.frameX++;
             }
 
             if(this.frameX > this.maxFrame) {
@@ -274,7 +277,6 @@ class Game {
 
         this.planet = new Planet(this);
         this.player = new Player(this);
-        this.mouse = {x:0, y:0};
         this.debug = true;
 
         this.projectPool = [];
@@ -296,6 +298,7 @@ class Game {
 
         this.score = 0;
         this.winningScore = 10;
+        this.mouse = {x:0, y:0};
 
 
 
@@ -335,7 +338,6 @@ class Game {
         // context.lineTo(this.mouse.x, this.mouse.y);
         // context.stroke();
         // if (this.game.debug){
-           
         // };
 
         this.enemyPool.forEach(enemy => {
@@ -372,8 +374,16 @@ class Game {
         context.font = '30px Impact';
         context.fillText('Score: ' + this.score, 20, 30);
         context.restore();
+        if(this.gameOver){
+            context.textAlign = 'center';
+            let message1 = 'You win!';
+            let message2 = 'Your score is ' + this.score + "1";
+            
+        }
+
     }
 
+    // CALCULATE AIM
     calcAim(a,b){
         const dx = a.x - b.x;
         const dy = a.y - b.y;
@@ -383,6 +393,7 @@ class Game {
         return [ aimX, aimY, dx, dy ];
     }
 
+    // CHECK COLLISION
     checkCollision(a, b){
         const dx = a.x - b.x;
         const dy = a.y - b.y;
@@ -391,23 +402,25 @@ class Game {
         return distance < sumOfRadii;
     }
 
+    // CREATE PROJECTILE POOL
     createProjectilePool(){
         for (let i = 0; i < this.numberOfProjectiles; i++){
             this.projectPool.push(new Projectile(this));
         }
     }
 
+    // GET PROJECTILE 
     getProjectile(){
         for (let i = 0; i < this.projectPool.length; i++){
             if(this.projectPool[i].free) return this.projectPool[i];
         }
     }
 
+    // CREATE ENEMY POOL
     createEnemyPool(){
         for(let i = 0; i < this.numberOfEnemies; i++){
             // this.enemyPool.push(new Asteroid(this));
             this.enemyPool.push(new Lobster(this));
-
         }
     }
 
