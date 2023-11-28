@@ -1,28 +1,29 @@
-// import Player from '/classes/Player';
+// GAME
+import Planet, {draw} from "./classes/Planet";
 
-// PLANET CLASS 
-class Planet {
-    // PLANET CONSTRUCTOR
-    constructor(game){
-        this.game = game;
-        this.x = this.game.width * 0.5;
-        this.y = this.game.height * 0.5;
-        this.radius = 80;
-        this.image = document.getElementById('planet');
-    }
-    // PLANET DRAW
-    draw(context) {
-        // DRAW PLANET IMAGE
-        context.drawImage(this.image, this.x - 100, this.y - 100);
-        // DEBUG OPTION
-        if(this.game.debug){
-            context.beginPath();
-            context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            context.stroke();
-        }
+// // PLANET CLASS 
+// class Planet {
+//     // PLANET CONSTRUCTOR
+//     constructor(game){
+//         this.game = game;
+//         this.x = this.game.width * 0.5;
+//         this.y = this.game.height * 0.5;
+//         this.radius = 80;
+//         this.image = document.getElementById('planet');
+//     }
+//     // PLANET DRAW
+//     draw(context) {
+//         // DRAW PLANET IMAGE
+//         context.drawImage(this.image, this.x - 100, this.y - 100);
+//         // DEBUG OPTION
+//         if(this.game.debug){
+//             context.beginPath();
+//             context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+//             context.stroke();
+//         }
         
-    }
-}
+//     }
+// }
 
 
 // PLAYER CLASS
@@ -141,6 +142,7 @@ class Enemy {
         this.height = this.radius* 2;
         this.speedX = 0;
         this.speedY = 0;
+        this.speedModifier = Math.random() * 0.7 + 0.1;
         this.angle = 0;
         this.collided = false;
         this.free = true;
@@ -161,8 +163,8 @@ class Enemy {
             this.y = Math.random() * this.game.height;
         }
         const aim = this.game.calcAim(this, this.game.planet);
-        this.speedX = aim[0];
-        this.speedY = aim[1];
+        this.speedX = aim[0] * this.speedModifier;
+        this.speedY = aim[1] * this.speedModifier;
         this.angle = Math.atan2(aim[3], aim[2]) + Math.PI * 0.5;
     }
 
@@ -205,17 +207,20 @@ class Enemy {
             this.y += this.speedY;
 
             // ENEMY / PLANET COLLISION
-            if (this.game.checkCollision(this, this.game.planet)){
+            if (this.game.checkCollision(this, this.game.planet) && this.lives >= 1){
                 this.lives = 0;
                 this.speedX = 0;
                 this.speedY = 0;
                 this.collided = true;
+                this.game.lives--;
 
             }
              // ENEMY / PLAYER COLLISION
-             if (this.game.checkCollision(this, this.game.player)){
+             if (this.game.checkCollision(this, this.game.player) && this.lives >= 1){
                 this.lives = 0;
                 this.collided = true;
+                this.game.lives--;
+
             }
 
             // ENEMY / PROJECTILE COLLISION CHECK
@@ -233,7 +238,7 @@ class Enemy {
 
             if(this.frameX > this.maxFrame) {
                 this.reset();
-                if(!this.collided) this.game.score += this.maxLives;
+                if(!this.collided && !this.game.gameOver) this.game.score += this.maxLives;
             }
         }
     }
@@ -267,6 +272,33 @@ class Lobster extends Enemy {
     }
 }
 
+// BEETLE ENEMY CLASS
+class Beetle extends Enemy {
+    // BEETLE CONSTRUCTOR
+    constructor(game){
+        super(game);
+        this.image = document.getElementById('beetle');
+        this.frameX = 0;
+        this.frameY = Math.floor(Math.random() * 4);
+        this.maxFrame = 3;
+        this.lives = 1;
+        this.maxLives = this.lives;
+    }
+}
+
+// RHINO ENEMY CLASS
+class Rhino extends Enemy {
+    // RHINO CONSTRUCTOR
+    constructor(game){
+        super(game);
+        this.image = document.getElementById('rhino');
+        this.frameX = 0;
+        this.frameY = Math.floor(Math.random() * 4);
+        this.maxFrame = 6;
+        this.lives = 4;
+        this.maxLives = this.lives;
+    }
+}
 // GAME CLASS
 class Game {
     // GAME CONSTRUCTOR
@@ -274,37 +306,41 @@ class Game {
         this.canvas = canvas;
         this.width = this.canvas.width;
         this.height = this.canvas.height;
-
+        this.debug = false;
+        // NEW INSTANCE OF PLAYER . PLANET
         this.planet = new Planet(this);
         this.player = new Player(this);
-        this.debug = true;
 
+        // PROJECTILE POOL ARRAY
         this.projectPool = [];
         this.numberOfProjectiles = 20;
         this.createProjectilePool();
         // console.log(this.projectPool);
 
+        // ENEMY POOL ARRAY
         this.enemyPool = [];
         this.numberOfEnemies = 20;
         this.createEnemyPool();
         // console.log(this.enemyPool);
         this.enemyPool[0].start();
         this.enemyTimer = 0;
-        this.enemyInterval = 1700;
+        this.enemyInterval = 800;
 
+        // SPRITE ANIMATION
         this.spriteUpdate = false;
         this.spriteTimer = 0;
         this.spriteInterval = 150;
 
+        // GAME LOGIC
         this.score = 0;
-        this.winningScore = 10;
+        this.winningScore = 50;
+        this.lives = 30;
+
+        // MOUSE TRACKING
         this.mouse = {x:0, y:0};
-
-
 
         // MOUSE MOVE EVENT
         window.addEventListener('mousemove', e => {
-            // console.log(e);
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
         });
@@ -319,15 +355,16 @@ class Game {
         window.addEventListener('keyup', e => {
             if(e.key === 'd') this.debug = !this.debug;
             else if (e.key === '1') this.player.shoot();
-        })
+        });
     }
 
     // GAME RENDER
     render(context, deltaTime){
         this.planet.draw(context);
-        this.drawStatusText(context);
+        this.drawStatusText(context);1111
         this.player.draw(context);
         this.player.update();
+        
         this.projectPool.forEach(projectile => {
             projectile.draw(context);
             projectile.update();
@@ -346,15 +383,17 @@ class Game {
         })
 
         // PERIODICALLY RENDER ENEMY 
-        if(this.enemyTimer < this.enemyInterval){
-            this.enemyTimer += deltaTime;
-        } else {
-            this.enemyTimer = 0;
-            const enemy = this.getEnemy();
-            if (enemy) enemy.start();
+        if (!this.gameOver) {
+            if(this.enemyTimer < this.enemyInterval){
+                this.enemyTimer += deltaTime;
+            } else {
+                this.enemyTimer = 0;
+                const enemy = this.getEnemy();
+                if (enemy) enemy.start();
+            }    
         }
-
-        //update sprites
+        
+        // PERIODICALLY UPDATE SPRITES
         if(this.spriteTimer < this.spriteInterval){
             this.spriteTimer += deltaTime
             this.spriteUpdate = false;
@@ -363,25 +402,41 @@ class Game {
             this.spriteUpdate = true;
         }
 
-        if(this.score >= this.winningScore) this.gameOver = true;
+        if(this.score >= this.winningScore || this.lives < 1) this.gameOver = true;
         // console.log(this.spriteUpdate);
         
     }
 
+    // GAME DRAW STATUS TEXT
     drawStatusText(context){
         context.save();
         context.textAlign ='left';
         context.font = '30px Impact';
         context.fillText('Score: ' + this.score, 20, 30);
-        context.restore();
-        if(this.gameOver){
-            context.textAlign = 'center';
-            let message1 = 'You win!';
-            let message2 = 'Your score is ' + this.score + "1";
-            
+        for ( let i = 0; i < this.lives; i++ ) {
+            context.fillRect(20 + 15 * i, 60, 10, 30);
         }
 
-    }
+        if (this.gameOver) {
+            context.textAlign = 'center';
+            let message1;
+            let message2;
+            if (this.score >= this.winningScore){
+                let message1 = 'You win!';
+                let message2 = 'Your score is ' + this.score + "!";    
+            } else {
+                message1 = 'You Lose!';
+                message2 = 'Try Again!';
+            }
+        context.font = '100px Impact';
+        context.fillText(message1, this.width * 0.5, 200);
+        context.font = '50px Impact';
+        context.fillText(message2, this.width * 0.5, 550);
+
+        }
+        context.restore();
+
+    };
 
     // CALCULATE AIM
     calcAim(a,b){
@@ -391,7 +446,7 @@ class Game {
         const aimX = dx / distance * -1;
         const aimY = dy / distance * -1;
         return [ aimX, aimY, dx, dy ];
-    }
+    };
 
     // CHECK COLLISION
     checkCollision(a, b){
@@ -399,8 +454,9 @@ class Game {
         const dy = a.y - b.y;
         const distance = Math.hypot(dx, dy);
         const sumOfRadii = a.radius + b.radius;
+
         return distance < sumOfRadii;
-    }
+    };
 
     // CREATE PROJECTILE POOL
     createProjectilePool(){
@@ -419,11 +475,20 @@ class Game {
     // CREATE ENEMY POOL
     createEnemyPool(){
         for(let i = 0; i < this.numberOfEnemies; i++){
-            // this.enemyPool.push(new Asteroid(this));
-            this.enemyPool.push(new Lobster(this));
+            let randomNumber = Math.random();
+            if (randomNumber > 0.25) {
+                this.enemyPool.push(new Asteroid(this));
+            } else if (randomNumber < 0.5 ) {
+                this.enemyPool.push(new Beetle(this));
+            } else if (randomNumber < 0.75 ) {
+                this.enemyPool.push(new Rhino(this));
+            } else {
+                this.enemyPool.push(new Lobster(this));
+            }
         }
     }
 
+    // GET ENEMY
     getEnemy(){
         for(let i = 0; i < this.enemyPool.length; i++){
             if (this.enemyPool[i].free) return this.enemyPool[i];
@@ -453,8 +518,8 @@ class Game {
             lastTime = timeStamp;
             ctx.clearRect(0,0, canvas.width, canvas.height);
             game.render(ctx, deltaTime);
-            // window.requestAnimationFrame(animate);
-            requestAnimationFrame(animate);
+            window.requestAnimationFrame(animate);
+            // requestAnimationFrame(animate);
             // console.log(deltaTime);
         }
 
