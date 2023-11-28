@@ -1,5 +1,5 @@
 // PLANET CLASS 
-export default class Planet {
+export class Planet {
     // PLANET CONSTRUCTOR
     constructor(game){
         this.game = game;

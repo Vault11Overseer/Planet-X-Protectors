@@ -1,5 +1,5 @@
 // GAME
-import Planet, {draw} from "./classes/Planet";
+import { Planet } from './classes/Planet.js';
 
 // // PLANET CLASS 
 // class Planet {
