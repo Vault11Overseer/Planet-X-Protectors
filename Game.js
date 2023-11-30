@@ -4,13 +4,6 @@ import { Player } from './classes/Player.js';
 import { Projectile } from './classes/Projectile.js';
 import { Enemy, Lobster, Asteroid, Beetle, Rhino } from './classes/Enemy.js';
 
-
-
-
-
-
-
-
 // GAME CLASS
 class Game {
     // GAME CONSTRUCTOR
@@ -22,51 +15,46 @@ class Game {
         // NEW INSTANCE OF PLAYER . PLANET
         this.planet = new Planet(this);
         this.player = new Player(this);
-
         // PROJECTILE POOL ARRAY
         this.projectPool = [];
         this.numberOfProjectiles = 20;
         this.createProjectilePool();
-        // console.log(this.projectPool);
-
         // ENEMY POOL ARRAY
         this.enemyPool = [];
         this.numberOfEnemies = 20;
         this.createEnemyPool();
-        // console.log(this.enemyPool);
+        // ENEMY TIMER SYSTEM
         this.enemyPool[0].start();
         this.enemyTimer = 0;
         this.enemyInterval = 800;
-
         // SPRITE ANIMATION
         this.spriteUpdate = false;
         this.spriteTimer = 0;
         this.spriteInterval = 150;
-
-        // GAME LOGIC
+        // SCORE LOGIC
         this.score = 0;
         this.winningScore = 50;
         this.lives = 30;
-
-        // MOUSE TRACKING
+        // MOUSE TRACKING - SET MOUSE COORDINATES
         this.mouse = {x:0, y:0};
 
-        // MOUSE MOVE EVENT
+        // MOUSE MOVE EVENT - GET MOUSE COORDINATES 
         window.addEventListener('mousemove', e => {
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
         });
 
-        // MOUSE DOWN EVENT
+        // MOUSE DOWN EVENT - GET CLICK COORDINATES AND CALL SHOOT FUNCTION
         window.addEventListener('mousedown', e => {
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
             this.player.shoot();
         });
 
+        // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
         window.addEventListener('keyup', e => {
             if(e.key === 'd') this.debug = !this.debug;
-            else if (e.key === '1') this.player.shoot();
+            else if (e.key === 's') this.player.shoot();
         });
     }
 
@@ -77,10 +65,11 @@ class Game {
         this.player.draw(context);
         this.player.update();
         
+        // RENDER PROJECTILE LOOP
         this.projectPool.forEach(projectile => {
             projectile.draw(context);
             projectile.update();
-        } );
+        });
         // LINE TO MOUSE
         // context.beginPath();
         // context.moveTo(this.planet.x, this.planet.y);
@@ -89,6 +78,7 @@ class Game {
         // if (this.game.debug){
         // };
 
+        // RENDER ENEMY LOOP
         this.enemyPool.forEach(enemy => {
             enemy.draw(context);
             enemy.update();

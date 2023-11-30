@@ -1,4 +1,3 @@
-
 // ENEMY CLASS
 export class Enemy {
     // ENEMY CONSTRUCTOR
