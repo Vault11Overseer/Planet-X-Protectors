@@ -34,7 +34,7 @@ class Game {
         // SCORE LOGIC
         this.score = 0;
         this.winningScore = 50;
-        this.lives = 30;
+        this.lives = 5;
         // MOUSE TRACKING - SET MOUSE COORDINATES
         this.mouse = {x:0, y:0};
 
@@ -118,26 +118,35 @@ class Game {
         for ( let i = 0; i < this.lives; i++ ) {
             context.fillRect(20 + 15 * i, 60, 10, 30);
         }
-
+        // GAME OVER TEXT
         if (this.gameOver) {
             context.textAlign = 'center';
             let message1;
             let message2;
+            let message3;
+            // WIN GAME TEXT
             if (this.score >= this.winningScore){
-                let message1 = 'You win!';
-                let message2 = 'Your score is ' + this.score + "!";    
+                message1 = 'You win!';
+                message2 = 'Planet Y has been saved!';
+                message3 = 'Your SCORE is: ' + this.score + "!";    
+            // LOOSE GAME TEXT
             } else {
                 message1 = 'You Lose!';
-                message2 = 'Try Again!';
+                message2 = 'Planet Y has been over run';
+                message3 = 'Try Again - ' + "SCORE: " + this.score + "!";
             }
-        context.font = '100px Impact';
-        context.fillText(message1, this.width * 0.5, 200);
+        // MESSAGE 1
+        context.font = '80px Impact';
+        context.fillText(message1, this.width * 0.5, 160);
+        // MESSAGE 2
+        context.font = '40px Impact';
+        context.fillText(message2, this.width * 0.5, 220)
+        // MESSAGE 3
         context.font = '50px Impact';
-        context.fillText(message2, this.width * 0.5, 550);
+        context.fillText(message3, this.width * 0.5, 550);
 
         }
         context.restore();
-
     };
 
     // CALCULATE AIM
