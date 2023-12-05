@@ -23,18 +23,22 @@ class Game {
         this.enemyPool = [];
         this.numberOfEnemies = 20;
         this.createEnemyPool();
+        
         // ENEMY TIMER SYSTEM
         this.enemyPool[0].start();
         this.enemyTimer = 0;
         this.enemyInterval = 800;
+
         // SPRITE ANIMATION
         this.spriteUpdate = false;
         this.spriteTimer = 0;
         this.spriteInterval = 150;
+
         // SCORE LOGIC
         this.score = 0;
         this.winningScore = 50;
         this.lives = 5;
+
         // MOUSE TRACKING - SET MOUSE COORDINATES
         this.mouse = {x:0, y:0};
 
