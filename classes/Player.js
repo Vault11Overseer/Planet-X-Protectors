@@ -18,7 +18,7 @@ export class Player {
         context.translate(this.x, this.y);
         context.rotate(this.angle)
         context.drawImage(this.image, -this.radius, -this.radius);
-        // DEBUG FEATURE
+        // PLAYER DEBUG FEATURE
         if (this.game.debug){
             context.beginPath();
             context.arc(0, 0, this.radius, 0, Math.PI * 2);
@@ -31,7 +31,6 @@ export class Player {
     // PLAYER UPDATE
     update() {
         this.aim = this.game.calcAim(this.game.planet, this.game.mouse );
-        // console.log(this.aim);
         this.x = this.game.planet.x + (this.game.planet.radius + this.radius) * this.aim[0];
         this.y = this.game.planet.y + (this.game.planet.radius + this.radius) * this.aim[1];
         this.angle = Math.atan2(this.aim[3], this.aim[2]);
@@ -42,6 +41,5 @@ export class Player {
     shoot(){
         const projectile = this.game.getProjectile();
         if(projectile) projectile.start(this.x + this.radius * this.aim[0], this.y + this.radius * this.aim[1], this.aim[0], this.aim[1]);
-        // console.log(projectile);
     }
 }
