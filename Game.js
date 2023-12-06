@@ -23,7 +23,7 @@ class Game {
         this.enemyPool = [];
         this.numberOfEnemies = 20;
         this.createEnemyPool();
-        
+
         // ENEMY TIMER SYSTEM
         this.enemyPool[0].start();
         this.enemyTimer = 0;
@@ -58,7 +58,7 @@ class Game {
         // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
         window.addEventListener('keyup', e => {
             if(e.key === 'd') this.debug = !this.debug;
-            else if (e.key === 's') this.player.shoot();
+            else if (e.key === 's' || e.key === 'a') this.player.shoot();
         });
     }
 
