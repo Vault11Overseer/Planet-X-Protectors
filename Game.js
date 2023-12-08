@@ -135,9 +135,9 @@ class Game {
                 message3 = 'Your SCORE is: ' + this.score + "!";    
             // LOOSE GAME TEXT
             } else {
-                message1 = 'You Lose!';
-                message2 = 'Planet Y has been over run';
-                message3 = 'Try Again - ' + "SCORE: " + this.score + "!";
+                message1 = 'Planet Y has been over run!';
+                message2 = '';
+                message3 = 'You Loose - ' + "SCORE: " + this.score + "!";
             }
         // MESSAGE 1
         context.font = '80px Impact';
