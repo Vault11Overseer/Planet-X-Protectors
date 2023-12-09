@@ -5,10 +5,10 @@ export class Projectile {
         this.game = game;
         this.x;
         this.y;
-        this.radius = 5;
+        this.radius = 3;
         this.speedX = 1;
         this.speedY = 1;
-        this.speedModifier = 5;
+        this.speedModifier = 8;
         this.free = true;
     }
 
@@ -22,9 +22,7 @@ export class Projectile {
     }
 
     // PROJECTILE RESET
-    reset(){
-        this.free = true;
-    }
+    reset(){this.free = true;}
 
     // PROJECTILE DRAW
     draw(context){
@@ -33,7 +31,7 @@ export class Projectile {
             context.save();
             context.beginPath();
             context.arc(this.x, this.y, this.radius, 0, Math.PI *2);
-            context.fillStyle = 'gold';
+            context.fillStyle = 'white';
             context.fill();
             context.restore();
         }
