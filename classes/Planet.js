@@ -3,10 +3,10 @@ export class Planet {
     // PLANET CONSTRUCTOR
     constructor(game){
         this.game = game;
+        this.image = document.getElementById('planet');
         this.x = this.game.width * 0.5;
         this.y = this.game.height * 0.5;
         this.radius = 80;
-        this.image = document.getElementById('planet');
     }
     // PLANET DRAW
     draw(context) {
