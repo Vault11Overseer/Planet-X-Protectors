@@ -8,17 +8,24 @@ import { Asteroid, Beetle, Lobster, Rhino } from './classes/Enemy.js';
 class Game {
     // GAME CONSTRUCTOR
     constructor(canvas) {
+
+        // CANVAS DIMENSIONS
         this.canvas = canvas;
         this.width = this.canvas.width;
         this.height = this.canvas.height;
+
+        // DEBUG OFF
         this.debug = false;
+
         // NEW INSTANCE OF PLAYER . PLANET
         this.planet = new Planet(this);
         this.player = new Player(this);
+
         // PROJECTILE POOL ARRAY
         this.projectPool = [];
         this.numberOfProjectiles = 20;
         this.createProjectilePool();
+
         // ENEMY POOL ARRAY
         this.enemyPool = [];
         this.numberOfEnemies = 20;
@@ -37,7 +44,7 @@ class Game {
         // SCORE LOGIC
         this.score = 0;
         this.winningScore = 50;
-        this.lives = 5;
+        this.lives = 15;
 
         // MOUSE TRACKING - SET MOUSE COORDINATES
         this.mouse = {x:0, y:0};
@@ -75,11 +82,12 @@ class Game {
             projectile.update();
         });
         // LINE TO MOUSE
-        // context.beginPath();
-        // context.moveTo(this.planet.x, this.planet.y);
-        // context.lineTo(this.mouse.x, this.mouse.y);
-        // context.stroke();
+     
         // if (this.game.debug){
+            // context.beginPath();
+            // context.moveTo(this.planet.x, this.planet.y);
+            // context.lineTo(this.mouse.x, this.mouse.y);
+            // context.stroke();
         // };
 
         // RENDER ENEMY LOOP
@@ -135,9 +143,9 @@ class Game {
                 message3 = 'Your SCORE is: ' + this.score + "!";    
             // LOOSE GAME TEXT
             } else {
-                message1 = 'Planet Y has been over run!';
-                message2 = '';
-                message3 = 'You Loose - ' + "SCORE: " + this.score + "!";
+                message1 = 'GAME OVER';
+                message2 = 'Planet Y has been over run!';
+                message3 = 'Try Again: ' + "SCORE: " + this.score + "!";
             }
         // MESSAGE 1
         context.font = '80px Impact';
