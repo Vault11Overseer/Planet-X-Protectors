@@ -201,10 +201,10 @@ class Game {
             let randomNumber = Math.random();
             if (randomNumber > 0.25) {
                 this.enemyPool.push(new Asteroid(this));
-            } else if (randomNumber < 0.5 ) {
+            } else if (randomNumber > 0.5 ) {
                 this.enemyPool.push(new Beetle(this));
-            } else if (randomNumber < 0.75 ) {
-                this.enemyPool.push(new Rhino(this));
+            } else if (randomNumber > 0.75 ) {
+                this.enemyPool.push(new Lobster(this));
             } else {
                 this.enemyPool.push(new Lobster(this));
             }
