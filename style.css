@@ -1,3 +1,4 @@
+/* CANVAS */
 #canvas1 {
     border: 3px solid black;
     background: url('./assets/defender/space.jpg');
@@ -9,6 +10,5 @@
     background-size: cover;
 }
 
-.hidden {
-    display: none;
-}
+/* HIDDEN CLASS */
+.hidden {display: none;}

@@ -127,19 +127,6 @@ export class Asteroid extends Enemy {
 }
 
 
-// BEETLE ENEMY CLASS
-export class Beetle extends Enemy {
-    // BEETLE CONSTRUCTOR
-    constructor(game){
-        super(game);
-        this.image = document.getElementById('beetle');
-        this.frameX = 0;
-        this.frameY = Math.floor(Math.random() * 4);
-        this.maxFrame = 3;
-        this.lives = 2;
-        this.maxLives = this.lives;
-    }
-}
 
 // LOBSTER ENEMY CLASS
 export class Lobster extends Enemy {
@@ -155,6 +142,19 @@ export class Lobster extends Enemy {
     }
 }
 
+// BEETLE ENEMY CLASS
+export class Beetle extends Enemy {
+    // BEETLE CONSTRUCTOR
+    constructor(game){
+        super(game);
+        this.image = document.getElementById('beetle');
+        this.frameX = 0;
+        this.frameY = Math.floor(Math.random() * 4);
+        this.maxFrame = 3;
+        this.lives = 1;
+        this.maxLives = this.lives;
+    }
+}
 
 // RHINO ENEMY CLASS
 export class Rhino extends Enemy {
