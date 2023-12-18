@@ -123,13 +123,17 @@ class Game {
 
     // GAME DRAW STATUS TEXT
     drawStatusText(context){
+        // CONTEXT SAVE
         context.save();
+        // MAIN GAME SCORE
         context.textAlign ='left';
         context.font = '30px Impact';
         context.fillText('Score: ' + this.score, 20, 30);
+        // LIVES BARS
         for ( let i = 0; i < this.lives; i++ ) {
             context.fillRect(20 + 15 * i, 60, 10, 30);
         }
+
         // GAME OVER TEXT
         if (this.gameOver) {
             context.textAlign = 'center';
@@ -140,12 +144,12 @@ class Game {
             if (this.score >= this.winningScore){
                 message1 = 'You win!';
                 message2 = 'Planet Y has been saved!';
-                message3 = 'Your SCORE is: ' + this.score + "!";    
+                message3 = 'Your score is: ' + this.score + "!";    
             // LOOSE GAME TEXT
             } else {
                 message1 = 'GAME OVER';
                 message2 = 'Planet Y has been over run!';
-                message3 = 'Try Again: ' + "SCORE: " + this.score + "!";
+                message3 = 'Your Score: ' + this.score + '!';
             }
         // MESSAGE 1
         context.font = '80px Impact';
@@ -156,7 +160,6 @@ class Game {
         // MESSAGE 3
         context.font = '50px Impact';
         context.fillText(message3, this.width * 0.5, 550);
-
         }
         context.restore();
     };
@@ -219,33 +222,36 @@ class Game {
     }
 }
 
-
+    // WINDOW EVENT LISTENER
     window.addEventListener('load', function (){
+        // PULL ELEMENTS
         const canvas = this.document.getElementById('canvas1');
         const ctx = canvas.getContext('2d');
+        // CANVAS WIDTH
         canvas.width = 800;
+        // CANVAS HEIGHT
         canvas.height = 800;
+        // CANVAS TYPOGRAPHY
         ctx.strokeStyle = 'white';
         ctx.fillStyle = 'white';
         ctx.lineWidth = 2;
         ctx.font = '50px Helvetica';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-
+        // NEW INSTANCE OF GAME
         const game = new Game(canvas);
 
+        // LAST TIME VARIABLE FOR ANIMATE FUNCTION
         let lastTime = 0;
-
+        // ANIMATE FUNCTION
         function animate(timeStamp) {
             const deltaTime = timeStamp - lastTime;
             lastTime = timeStamp;
             ctx.clearRect(0,0, canvas.width, canvas.height);
             game.render(ctx, deltaTime);
             window.requestAnimationFrame(animate);
-            // requestAnimationFrame(animate);
-            // console.log(deltaTime);
         }
-
+        // REQUEST ANIMATION FRAME AND PASS IT ANIMATE
         requestAnimationFrame(animate);
     }
 )
