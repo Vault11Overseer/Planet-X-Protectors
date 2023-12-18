@@ -12,3 +12,14 @@
 
 /* HIDDEN CLASS */
 .hidden {display: none;}
+
+/* FOREGROUND */
+/* #foreground {
+    height: 300px;
+    width: 800px;
+    position: absolute;
+    z-index: 3;
+    left: 5.5%;
+    bottom: 0;
+    background: no-repeat;
+} */

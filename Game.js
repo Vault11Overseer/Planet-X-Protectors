@@ -84,10 +84,10 @@ class Game {
         // LINE TO MOUSE
      
         // if (this.game.debug){
-            // context.beginPath();
-            // context.moveTo(this.planet.x, this.planet.y);
-            // context.lineTo(this.mouse.x, this.mouse.y);
-            // context.stroke();
+        //     context.beginPath();
+        //     context.moveTo(this.planet.x, this.planet.y);
+        //     context.lineTo(this.mouse.x, this.mouse.y);
+        //     context.stroke();
         // };
 
         // RENDER ENEMY LOOP

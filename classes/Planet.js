@@ -6,7 +6,7 @@ export class Planet {
         this.image = document.getElementById('planet');
         this.x = this.game.width * 0.5;
         this.y = this.game.height * 0.5;
-        this.radius = 80;
+        this.radius = 60;
     }
     // PLANET DRAW
     draw(context) {

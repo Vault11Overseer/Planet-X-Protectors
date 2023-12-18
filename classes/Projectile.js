@@ -5,10 +5,13 @@ export class Projectile {
         this.game = game;
         this.x;
         this.y;
+        // RADIUS
         this.radius = 3;
+        // SPEED
         this.speedX = 1;
         this.speedY = 1;
         this.speedModifier = 8;
+        // FREE
         this.free = true;
     }
 

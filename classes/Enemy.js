@@ -5,13 +5,17 @@ export class Enemy {
         this.game = game;
         this. x = 0;
         this.y = 0;
+        // RADIUS
         this.radius = 40;
         this.width = this.radius * 2;
         this.height = this.radius* 2;
+        // SPEED
         this.speedX = 0;
         this.speedY = 0;
         this.speedModifier = Math.random() * 0.7 + 0.1;
+        // ANGLE
         this.angle = 0;
+        // COLLISION CHECK
         this.collided = false;
         this.free = true;
     }
@@ -23,6 +27,7 @@ export class Enemy {
         this.frameX =0;
         this.lives =  this.maxLives;
         this.frameY = Math.floor(Math.random() * 4);
+        // RANDOM ENEMY ENTRY PLACEMENT
         if (Math.random() < 0.5){
             this.x = Math.random() * this.game.width;
             this.y = Math.random() < 0.5 ? -this.radius : this.game.height + this.radius;
@@ -31,15 +36,14 @@ export class Enemy {
             this.y = Math.random() * this.game.height;
         }
         const aim = this.game.calcAim(this, this.game.planet);
+        // SET SPEED & ANGLE
         this.speedX = aim[0] * this.speedModifier;
         this.speedY = aim[1] * this.speedModifier;
         this.angle = Math.atan2(aim[3], aim[2]) + Math.PI * 0.5;
     }
 
     // ENEMY RESET
-    reset(){
-        this.free = true;
-    }
+    reset(){this.free = true;}
 
     // ENEMY HIT
     hit(damage){
@@ -63,14 +67,15 @@ export class Enemy {
                 context.stroke();
                 context.fillText(this.lives, 0,0);
             }
-            context.restore();
-            
+            context.restore(); 
         }
     }
 
     // ENEMY UPDATE
     update(){
         if(!this.free){
+
+            // UPDATE ENEMIES SPEED
             this.x += this.speedX;
             this.y += this.speedY;
 
@@ -80,15 +85,15 @@ export class Enemy {
                 this.speedX = 0;
                 this.speedY = 0;
                 this.collided = true;
+                // REDUCE LIVES IF COLLISION IS TRUE
                 this.game.lives--;
-
             }
-             // ENEMY / PLAYER COLLISION
-             if (this.game.checkCollision(this, this.game.player) && this.lives >= 1){
+
+            // ENEMY / PLAYER COLLISION
+            if (this.game.checkCollision(this, this.game.player) && this.lives >= 1){
                 this.lives = 0;
                 this.collided = true;
                 this.game.lives--;
-
             }
 
             // ENEMY / PROJECTILE COLLISION CHECK
@@ -104,6 +109,7 @@ export class Enemy {
                 this.frameX++;
             }
 
+            // IF ENEMY GOES OFF SCREEN - RESET ENEMY
             if(this.frameX > this.maxFrame) {
                 this.reset();
                 if(!this.collided && !this.game.gameOver) this.game.score += this.maxLives;
