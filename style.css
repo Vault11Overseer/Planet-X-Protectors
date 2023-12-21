@@ -23,3 +23,16 @@
     bottom: 0;
     background: no-repeat;
 } */
+
+
+
+#canvas2 {
+    border: 1px solid black;
+    background: url('./assets/all/bg1.png');
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
