@@ -9,7 +9,10 @@ export class Player {
         this.radius = 40;
         this.aim;
         this.angle = 0;
-    }
+    }  
+    
+    
+   
 
     // DRAW PLAYER
     draw(context){
@@ -41,5 +44,9 @@ export class Player {
         const projectile = this.game.getProjectile();
         if(projectile) projectile.start(this.x + this.radius * this.aim[0], this.y + this.radius * this.aim[1], this.aim[0], this.aim[1]);
     }
+
+
+
+  
 
 }

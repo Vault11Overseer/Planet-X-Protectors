@@ -4,6 +4,9 @@ import { Player } from './classes/Player.js';
 import { Projectile } from './classes/Projectile.js';
 import { Asteroid, Beetle, Lobster, Rhino } from './classes/Enemy.js';
 
+
+        
+    
 // GAME CLASS
 class Game {
     // GAME CONSTRUCTOR
@@ -46,6 +49,7 @@ class Game {
         this.winningScore = 50;
         this.lives = 15;
 
+
         // MOUSE TRACKING - SET MOUSE COORDINATES
         this.mouse = {x:0, y:0};
 
@@ -64,10 +68,16 @@ class Game {
 
         // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
         window.addEventListener('keyup', e => {
-            if(e.key === 'd') this.debug = !this.debug;
-            else if (e.key === 's' || e.key === 'a') this.player.shoot();
+            if(e.key === 'd') {this.debug = !this.debug}
+            else if (e.key === 's' || e.key === 'a') {this.player.shoot()}
+            // else if (e.key === 'r') {this.restart()}
         });
     }
+
+     // RESTART - MAY NOT BE APPROPRIATE SPOT
+    //  restart(){
+    //     location.reload();
+    // };
 
     // GAME RENDER
     render(context, deltaTime){

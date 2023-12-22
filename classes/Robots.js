@@ -52,8 +52,32 @@ window.addEventListener('load', function(){
                 this.mouse.y = e.offsetY;
                 this.tracking = false;
             });
+            
         }
     
+
+
+
+
+
+   // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
+   window.addEventListener('keyup', e => {
+    if (e.key === 'r') {this.restart()}
+    });
+}
+
+ // RESTART - MAY NOT BE APPROPRIATE SPOT
+ restart(){
+    
+    location.reload();
+};
+
+
+
+
+
+
+        
         draw(context){
             // ROBOT BODY
             // context.drawImage(this.bodySprite, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x - this.bodyImage.width * 0.5 + 65, this.y - this.bodyImage.height * 0.5 - 53, this.spriteWidth, this.spriteHeight);
