@@ -61,16 +61,16 @@ window.addEventListener('load', function(){
 
 
    // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
-   window.addEventListener('keyup', e => {
-    if (e.key === 'r') {this.restart()}
-    });
-}
+//    window.addEventListener('keyup', e => {
+//     if (e.key === 'r') {this.restart()}
+//     });
+// }
 
  // RESTART - MAY NOT BE APPROPRIATE SPOT
- restart(){
-    
-    location.reload();
-};
+//  restart(){
+
+//     location.reload();
+// };
 
 
 

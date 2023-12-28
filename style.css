@@ -1,7 +1,8 @@
 /* CANVAS */
 #canvas2 {
     border: 3px solid black;
-    background: url('./assets/defender/space.jpg');
+    /* background: url('./assets/defender/space.jpg'); */
+    /* background: url('./assets/all/bg1.png'); */
     background: url('./assets/all/bg1.png');
 
     position: absolute;
@@ -14,3 +15,9 @@
 
 /* HIDDEN CLASS */
 .hidden {display: none;}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
