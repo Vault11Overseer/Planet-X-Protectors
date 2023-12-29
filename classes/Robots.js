@@ -1,3 +1,7 @@
+// REFACTOR CODE
+
+
+
 window.addEventListener('load', function(){
     const canvas = this.document.getElementById('canvas2');
     const ctx = canvas.getContext('2d');
@@ -7,9 +11,9 @@ window.addEventListener('load', function(){
     ctx.lineWidth = 3;
    
 
-
+    // ROBOT CLASS
     class Robot {
-
+        // CONSTRUCTOR CLASS
         constructor(canvas) {
             this.canvas = canvas;
             this.x = this.canvas.width * 0.7;
@@ -22,6 +26,7 @@ window.addEventListener('load', function(){
             this.spriteHeight = 393;
             this.frameX = 0;
             this.maxFrame = 75;
+            // BODY PARTS
             this.bodyImage = document.getElementById('body');
             this.bodySprite = document.getElementById('bodySprite');
             this.eye1Image = document.getElementById('eye1');
