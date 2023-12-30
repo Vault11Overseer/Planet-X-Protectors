@@ -16,12 +16,16 @@ window.addEventListener('load', function(){
         // CONSTRUCTOR CLASS
         constructor(canvas) {
             this.canvas = canvas;
+            // X & Y POSITIONS
             this.x = this.canvas.width * 0.7;
             this.y = this.canvas.height * 0.2;
+            // CENTER POINT
             this.centerX = this.x;
             this.centerY = this.y;
+            // RADIUS
             this.radius = 80;
             this.angle = 0;
+            // SPRITE WIDTH & HEIGHT
             this.spriteWidth = 370;
             this.spriteHeight = 393;
             this.frameX = 0;
@@ -37,13 +41,17 @@ window.addEventListener('load', function(){
             this.eye2Distance = this.eye2Radius;
             this.detectorLight = document.getElementById('detector-light');
             this.reflectionImage = document.getElementById('reflection');
+            // MOVEMENT ANGLE = 0
             this.movementAngle = 0;
+            // TRACKING
             this.tracking = false;
+            // MOUSE
             this.mouse = {
                 x: 0,
                 y: 0
             }
         
+            // MOUSE MOVE EVENT LISTENER
             this.canvas.addEventListener('mousemove', e => {
                 console.log(this.angle);
                 this.mouse.x = e.offsetX;
