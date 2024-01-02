@@ -33,9 +33,11 @@ window.addEventListener('load', function(){
             // BODY PARTS
             this.bodyImage = document.getElementById('body');
             this.bodySprite = document.getElementById('bodySprite');
+            // EYE 1
             this.eye1Image = document.getElementById('eye1');
             this.eye1Radius = this.radius * 0.4;
             this.eye1Distance = this.eye1Radius;
+            // EYE 2
             this.eye2Image = document.getElementById('eye2');
             this.eye2Radius = this.radius * 0.65;
             this.eye2Distance = this.eye2Radius;
