@@ -41,6 +41,7 @@ window.addEventListener('load', function(){
             this.eye2Image = document.getElementById('eye2');
             this.eye2Radius = this.radius * 0.65;
             this.eye2Distance = this.eye2Radius;
+            // AFTER EFFECTS
             this.detectorLight = document.getElementById('detector-light');
             this.reflectionImage = document.getElementById('reflection');
             // MOVEMENT ANGLE = 0
@@ -61,6 +62,7 @@ window.addEventListener('load', function(){
                 this.tracking = true;
             });
 
+            // MOUSE LEAVE EVENT LISTENER
             this.canvas.addEventListener('mouseleave', e => {
                 console.log(this.angle);
                 this.mouse.x = e.offsetX;
@@ -73,7 +75,7 @@ window.addEventListener('load', function(){
 
 
 
-
+ADD TO DEBUG MODE
 
    // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
 //    window.addEventListener('keyup', e => {
@@ -95,7 +97,6 @@ window.addEventListener('load', function(){
         
         draw(context){
             // ROBOT BODY
-            // context.drawImage(this.bodySprite, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x - this.bodyImage.width * 0.5 + 65, this.y - this.bodyImage.height * 0.5 - 53, this.spriteWidth, this.spriteHeight);
             context.drawImage(this.bodySprite, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x - this.bodyImage.width * 0.5 + 65, this.y - this.bodyImage.height * 0.5 - 53, this.spriteWidth, this.spriteHeight);
 
 // ADD TO DEBUG       
