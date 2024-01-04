@@ -1,9 +1,9 @@
 /* CANVAS */
-#canvas2 {
+#canvas1 {
     border: 3px solid black;
-    /* background: url('./assets/defender/space.jpg'); */
+    background: url('./assets/defender/space.jpg');
     /* background: url('./assets/all/bg1.png'); */
-    background: url('./assets/all/bg1.png');
+    /* background: url('./assets/all/bg1.png'); */
 
     position: absolute;
     top: 50%;
