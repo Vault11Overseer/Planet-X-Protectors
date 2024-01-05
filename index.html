@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planet Defender</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- <script type="module" src="Game.js"></script> -->
+    <title>Planet X Protector</title>
+    <!-- SCRIPT -->
     <script type="module" src="./Game.js"></script>
-
-
+    <!-- STYLE -->
+    <style>
+        .hidden {display: none;}
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        #canvas {
+            border: 3px solid black;
+            background: url('./assets/defender/space.jpg');
+            /* background: url('./assets/all/bg1.png'); */
+            /* background: url('./assets/all/bg1.png'); */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
     <!-- CANVAS -->
-    <canvas id="canvas1"></canvas>
+    <canvas id="canvas"></canvas>
 
 
     <!-- HIDDEN CLASS -->
@@ -24,31 +38,18 @@
         <img src="./assets/defender/beetlemorph.png" alt="beetle" srcset="" id="beetle">
         <img src="./assets/defender/rhinomorph.png" alt="rhino" srcset="" id="rhino">
     </div>
-
-    <!-- FOREGROUND -->
-    <!-- <img src="./assets/defender/planetbg.png" id="foreground"alt="" srcset=""> -->
-
-
-    <!-- CANVAS 2 -->
-    <!-- <canvas id="canvas2"></canvas>
-
-    <div class="hidden">
+<!-- <div class="hidden">
         <img src='./assets/all/body.png' alt="body" id="body">
         <img src='./assets/all/bodySprite.png' alt="bodySprite" id="bodySprite">
         <img src='./assets/all/eye1.png' alt="eye1" id="eye1">
         <img src='./assets/all/eye2.png' alt="eye2" id="eye2">
         <img src='./assets/all/reflection.png' alt="reflection" id="reflection">
-
         <img src="./assets/all/detectorLight.png" alt="detector-light" id="detector-light">
     </div> -->
 
-
-       <!-- CANVAS 3 -->
-       <!-- <canvas id="canvas3"></canvas>
-
-       <div class="hidden">
-           <img src='./assets/all/body.png' alt="body" id="body">
-       </div> -->
+    <!-- <div class="hidden">
+        <img src='./assets/all/body.png' alt="body" id="body">
+    </div>  -->
 
 </body>
 </html>
