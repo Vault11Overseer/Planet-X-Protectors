@@ -63,18 +63,16 @@ class Game {
             this.player.shoot();
         });
 
+        function restart (){
+          location.reload();  
+        }
         // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
         window.addEventListener('keyup', e => {
             if(e.key === 'd') {this.debug = !this.debug}
             else if (e.key === 's' || e.key === 'a') {this.player.shoot()}
-            // else if (e.key === 'r') {this.restart()}
+            else if (e.key === 'r') {restart()}
         });
     }
-
-     // RESTART - MAY NOT BE APPROPRIATE SPOT
-    //  restart(){
-    //     location.reload();
-    // };
 
     // GAME RENDER
     render(context, deltaTime){
@@ -90,12 +88,12 @@ class Game {
         });
         // LINE TO MOUSE
      
-        // if (this.game.debug){
-        //     context.beginPath();
-        //     context.moveTo(this.planet.x, this.planet.y);
-        //     context.lineTo(this.mouse.x, this.mouse.y);
-        //     context.stroke();
-        // };
+        if (this.debug){
+            context.beginPath();
+            context.moveTo(this.planet.x, this.planet.y);
+            context.lineTo(this.mouse.x, this.mouse.y);
+            context.stroke();
+        };
 
         // RENDER ENEMY LOOP
         this.enemyPool.forEach(enemy => {
