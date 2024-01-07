@@ -1,5 +1,6 @@
 // ENEMY CLASS
 export class Enemy {
+
     // ENEMY CONSTRUCTOR
     constructor(game){
         this.game = game;
@@ -120,7 +121,6 @@ export class Enemy {
 
 // ASTEROID ENEMY CLASS
 export class Asteroid extends Enemy {
-    // ASTEROID CONSTRUCTOR 
     constructor(game){
         super(game);
         this.image = document.getElementById('asteroid');
@@ -136,7 +136,6 @@ export class Asteroid extends Enemy {
 
 // LOBSTER ENEMY CLASS
 export class Lobster extends Enemy {
-    // LOBSTER CONSTRUCTOR
     constructor(game){
         super(game);
         this.image = document.getElementById('lobster');
@@ -150,7 +149,6 @@ export class Lobster extends Enemy {
 
 // BEETLE ENEMY CLASS
 export class Beetle extends Enemy {
-    // BEETLE CONSTRUCTOR
     constructor(game){
         super(game);
         this.image = document.getElementById('beetle');
@@ -164,7 +162,6 @@ export class Beetle extends Enemy {
 
 // RHINO ENEMY CLASS
 export class Rhino extends Enemy {
-    // RHINO CONSTRUCTOR
     constructor(game){
         super(game);
         this.image = document.getElementById('rhino');

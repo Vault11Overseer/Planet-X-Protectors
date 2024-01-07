@@ -1,5 +1,6 @@
 // PLANET CLASS 
 export class Planet {
+
     // PLANET CONSTRUCTOR
     constructor(game){
         this.game = game;
@@ -8,6 +9,7 @@ export class Planet {
         this.y = this.game.height * 0.5;
         this.radius = 60;
     }
+
     // PLANET DRAW
     draw(context) {
         // DRAW PLANET IMAGE
@@ -18,6 +20,6 @@ export class Planet {
             context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             context.stroke();
         }
-        
     }
+    
 }

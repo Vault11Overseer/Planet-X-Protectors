@@ -1,5 +1,6 @@
 // PLAYER CLASS
 export class Player {
+
     // PLAYER CONSTRUCTOR
     constructor(game){
         this.game = game;
@@ -11,9 +12,6 @@ export class Player {
         this.angle = 0;
     }  
     
-    
-   
-
     // DRAW PLAYER
     draw(context){
         context.save();
@@ -44,9 +42,5 @@ export class Player {
         const projectile = this.game.getProjectile();
         if(projectile) projectile.start(this.x + this.radius * this.aim[0], this.y + this.radius * this.aim[1], this.aim[0], this.aim[1]);
     }
-
-
-
-  
 
 }

@@ -1,0 +1,15 @@
+/* * {margin: 0; padding: 0; box-sizing: border-box;} */
+#canvas1 {
+    border: 3px solid black;
+    background: url('./assets/defender/space.jpg');
+    /* background: url('./assets/robot/bg1.png'); */
+    /* background: url('./assets/all/bg1.png'); */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hidden {display: none;}

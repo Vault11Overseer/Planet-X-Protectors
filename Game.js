@@ -3,9 +3,6 @@ import { Planet } from './classes/Planet.js';
 import { Player } from './classes/Player.js';
 import { Projectile } from './classes/Projectile.js';
 import { Asteroid, Beetle, Lobster, Rhino } from './classes/Enemy.js';
-
-
-        
     
 // GAME CLASS
 class Game {

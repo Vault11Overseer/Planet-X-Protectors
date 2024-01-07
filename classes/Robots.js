@@ -3,7 +3,7 @@
 
 
 window.addEventListener('load', function(){
-    const canvas = this.document.getElementById('canvas2');
+    const canvas = this.document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
     canvas.width = 600;
     canvas.height = 800;
@@ -30,6 +30,9 @@ window.addEventListener('load', function(){
             this.spriteHeight = 393;
             this.frameX = 0;
             this.maxFrame = 75;
+
+            // DEBUG
+            this.debug = false;
             // BODY PARTS
             this.bodyImage = document.getElementById('body');
             this.bodySprite = document.getElementById('bodySprite');
@@ -53,7 +56,17 @@ window.addEventListener('load', function(){
                 x: 0,
                 y: 0
             }
-        
+
+
+
+            // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
+             
+            window.addEventListener('keyup', e => {
+                if(e.key === 'd') {this.debug = !this.debug}
+                // else if (e.key === 's' || e.key === 'a') {this.player.shoot()}
+                // else if (e.key === 'r') {this.restart()}
+                console.log(this.debug);
+            });
             // MOUSE MOVE EVENT LISTENER
             this.canvas.addEventListener('mousemove', e => {
                 console.log(this.angle);
@@ -71,63 +84,46 @@ window.addEventListener('load', function(){
             });
             
         }
-    
-
-
-
-ADD TO DEBUG MODE
-
-   // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
-//    window.addEventListener('keyup', e => {
-//     if (e.key === 'r') {this.restart()}
-//     });
-// }
-
- // RESTART - MAY NOT BE APPROPRIATE SPOT
-//  restart(){
-
-//     location.reload();
-// };
-
-
-
-
-
 
         
         draw(context){
             // ROBOT BODY
             context.drawImage(this.bodySprite, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x - this.bodyImage.width * 0.5 + 65, this.y - this.bodyImage.height * 0.5 - 53, this.spriteWidth, this.spriteHeight);
 
-// ADD TO DEBUG       
-            // context.beginPath();
-            // context.arc(this.x,this.y,this.radius, 0, Math.PI * 2);
-            // context.stroke();
+            // DEBUG
+            if(this.debug){
+                context.beginPath();
+                context.arc(this.x,this.y,this.radius, 0, Math.PI * 2);
+                context.stroke();    
+            }       
             // EYEBALL 1
             context.drawImage(this.eye1Image,this.x + Math.cos(this.angle) * this.eye1Radius - this.eye1Image.width * 0.5, this.y + Math.sin(this.angle) * this.eye1Radius - this.eye1Image.height * 0.5);
 
-// // ADD TO DEBUG       
-//             context.beginPath();
-//             context.arc(this.x + Math.cos(this.angle) * this.radius * 0.35 ,this.y + Math.sin(this.angle) * this.radius * 0.35,this.radius * 0.6, 0, Math.PI * 2);
-//             context.stroke();
+            // DEBUG   
+            if(this.debug) {
+                        context.beginPath();
+                        context.arc(this.x + Math.cos(this.angle) * this.radius * 0.35 ,this.y + Math.sin(this.angle) * this.radius * 0.35,this.radius * 0.6, 0, Math.PI * 2);
+                        context.stroke();
+            }    
             // EYEBALL 2
             context.drawImage(this.eye2Image,this.x + Math.cos(this.angle) * this.eye2Radius - this.eye2Image.width * 0.5, this.y + Math.sin(this.angle) * this.eye2Radius - this.eye2Image.height * 0.5);
         
-// // ADD TO DEBUG       
-            // context.beginPath();
-            // context.arc(this.x + Math.cos(this.angle) * this.radius * 0.6 ,this.y + Math.sin(this.angle) * this.radius * 0.6,this.radius * 0.3, 0, Math.PI * 2);
-            // context.stroke();
-
+            // DEBUG
+            if(this.debug) {
+                context.beginPath();
+                context.arc(this.x + Math.cos(this.angle) * this.radius * 0.6 ,this.y + Math.sin(this.angle) * this.radius * 0.6,this.radius * 0.3, 0, Math.PI * 2);
+                context.stroke();
+            }       
 
             // REFLECTION
             context.drawImage(this.reflectionImage, this.x - this.reflectionImage.width * 0.5, this.y - this.reflectionImage.height * 0.5);
             // DETECTOR LIGHT
             if(this.tracking) {
-            context.drawImage(this.detectorLight, this.x - this.detectorLight.width * 0.5, this.y - this.detectorLight.height * 0.5 - 190);
-
+                context.drawImage(this.detectorLight, this.x - this.detectorLight.width * 0.5, this.y - this.detectorLight.height * 0.5 - 190);
             }
         }
 
+        // UPDATE
         update(){
             const dx = this.mouse.x -this.x;
             const dy = this.mouse.y -this.y;
@@ -135,6 +131,7 @@ ADD TO DEBUG MODE
 
             this.angle = Math.atan2(dy, dx);
 
+            // TRACKING STATUS
             if(distance <= this.eye1Distance * 2.5){
                 this.eye1Radius = distance * 0.4;
                 this.eye2Radius = distance * 0.65;
