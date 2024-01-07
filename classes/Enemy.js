@@ -172,3 +172,18 @@ export class Rhino extends Enemy {
         this.maxLives = this.lives;
     }
 }
+
+// BOSS ENEMY CLASS
+export class Boss extends Enemy {
+    constructor(game){
+        super(game);
+        this.image = document.getElementById('boss');
+        this.frameX = 0;
+        this.frameY = Math.floor(Math.random() * 4);
+        this.maxFrame = 11;
+        this.lives = 10;
+        this.maxLives = this.lives;
+        this.width = 200;
+        this.height = 200;
+    }
+}

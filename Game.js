@@ -2,7 +2,7 @@
 import { Planet } from './classes/Planet.js';
 import { Player } from './classes/Player.js';
 import { Projectile } from './classes/Projectile.js';
-import { Asteroid, Beetle, Lobster, Rhino } from './classes/Enemy.js';
+import { Asteroid, Beetle, Lobster, Rhino, Boss } from './classes/Enemy.js';
     
 // GAME CLASS
 class Game {
@@ -43,12 +43,25 @@ class Game {
 
         // SCORE LOGIC
         this.score = 0;
-        this.winningScore = 50;
+        this.winningScore = 5;
         this.lives = 15;
 
 
         // MOUSE TRACKING - SET MOUSE COORDINATES
         this.mouse = {x:0, y:0};
+
+
+
+        // ????
+        // SOUND HANDLER
+        this.explosion1 = document.getElementById('explosion1');
+        this.explosion2 = document.getElementById('explosion2');
+        this.explosion3 = document.getElementById('explosion3');
+        this.explosion4 = document.getElementById('explosion4');
+        this.explosion5 = document.getElementById('explosion5');
+        this.explosion6 = document.getElementById('explosion6');
+        this.explosionSounds = [this.explosion1, this.explosion2, this.explosion3, this.explosion4, this.explosion5, this.explosion6];
+        this.sound = this.explosionSounds[4];
 
         // MOUSE MOVE EVENT - GET MOUSE COORDINATES 
         window.addEventListener('mousemove', e => {
@@ -56,22 +69,40 @@ class Game {
             this.mouse.y = e.offsetY;
         });
 
+
+        // ??????
         // MOUSE DOWN EVENT - GET CLICK COORDINATES AND CALL SHOOT FUNCTION
         window.addEventListener('mousedown', e => {
             this.mouse.x = e.offsetX;
             this.mouse.y = e.offsetY;
             this.player.shoot();
+            this.sound.play();
+
         });
 
         function restart (){
           location.reload();  
         }
+
+
+
+        // ??????
         // KEYSTROKE - DEBUG MODE, AND FIRE BUTTON
         window.addEventListener('keyup', e => {
             if(e.key === 'd') {this.debug = !this.debug}
-            else if (e.key === 's' || e.key === 'a') {this.player.shoot()}
+            else if (e.key === 's' || e.key === 'a') {
+                this.player.shoot();
+                this.sound.play();
+            }
             else if (e.key === 'r') {restart()}
         });
+    }
+
+
+    // PLAY SOUND
+    play(){
+        this.sound.currentTime = 0;
+        this.sound.play();
     }
 
     // GAME RENDER
@@ -214,7 +245,7 @@ class Game {
             } else if (randomNumber > 0.75 ) {
                 this.enemyPool.push(new Lobster(this));
             } else {
-                this.enemyPool.push(new Rhino(this));
+                this.enemyPool.push(new Boss(this));
             }
         }
     }
