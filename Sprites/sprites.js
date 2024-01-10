@@ -3,7 +3,7 @@ window.addEventListener('load', function(){
     const ctx = canvas.getContext('2d');
     canvas.width = 500;
     canvas.height = 500;
-    // console.log(ctx);
+    console.log(ctx);
 
 
     class Mandrake {
