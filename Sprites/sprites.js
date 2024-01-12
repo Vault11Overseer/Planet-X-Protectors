@@ -6,11 +6,15 @@ window.addEventListener('load', function(){
     console.log(ctx);
 
 
+    // MADRAKE CLASS
     class Mandrake {
+        // CONSTRUCTOR METHOD
         constructor(canvasWidth, canvasHeight){
+            // CANVAS WIDTH & HEIGHT
             this.canvasWidth = canvasWidth;
             this.canvasHeight = canvasHeight;
             this.image = document.getElementById('mandrake');
+            // SPRITE WIDTH & HEIGHT
             this.spriteWidth = 256;
             this.spriteHeight = 256;
             this.width = this.spriteWidth;
@@ -25,20 +29,19 @@ window.addEventListener('load', function(){
             this.frameY = 7;
         }
     
+        // WHEN AND WHERE TO DRAW THIS IMAGE
         draw (context){
-
             context.drawImage(this.image, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width * this.scale, this.height * this.scale);
         }
 
+        // UPDATING THE IMAGE
         update(){
-            // if(this.frame < this.maxFrame) this.frame++;
-            // else this.frame = this.minFrame;
-
             this.frame = this.frame < this.maxFrame ? this.frame + 1 : this.minFrame;
             this.frameX = this.frame % 18;
             this.frameY = Math.floor(this.frame / 18);
         }
 
+        // SWAPPING ANIMATION FRAMES
         setAnimation(newMinFrame, newMaxFrame) {
             this.minFrame = newMinFrame;
             this.maxFrame = newMaxFrame;
@@ -46,9 +49,11 @@ window.addEventListener('load', function(){
         }
 
     }
-    const mandrake = new Mandrake(canvas.width, canvas.height);
-    // console.log("Mandrake: ", mandrake);
 
+    // INSTANTIATE INSTANCE
+    const mandrake = new Mandrake(canvas.width, canvas.height);
+
+    // ANIMATE FUNCTION
     function animate () {
         ctx.clearRect(0,0, canvas.width, canvas.height);
         mandrake.draw(ctx);
