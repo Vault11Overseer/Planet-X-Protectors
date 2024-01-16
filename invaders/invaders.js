@@ -1,3 +1,6 @@
+// SPACE INVADERS``
+
+// CLASS PLAYER
 class Player {
     constructor(game){
         this.game = game;
