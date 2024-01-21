@@ -76,6 +76,8 @@ class Enemy {
         this.y = 0;
         this.positionX = positionX;
         this.positionY = positionY;
+        this.markedForDeletion = false;
+
 
     }
 
@@ -87,6 +89,11 @@ class Enemy {
         this.x = x + this.positionX;
         this.y = y + this.positionY;
 
+        this.game.projectilesPool.forEach(projectile => {
+            if(this.game.checkCollision(this, projectile)){
+                this.markedForDeletion = true;
+            }
+        })
     }
 }
 
