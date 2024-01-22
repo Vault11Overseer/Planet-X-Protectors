@@ -11,10 +11,12 @@ class Player {
         this.speed = 10;
     }
 
+    // DRAW
     draw(context){
         context.fillRect(this.x, this.y, this.width, this.height);
     }
 
+    // UPDATE
     update () {
         // HORIZONTAL MOVEMENT
         if(this.game.keys.indexOf('ArrowLeft') > -1) this.x -= this.speed;
@@ -25,6 +27,7 @@ class Player {
 
     }
 
+    // SHOOT
     shoot(){
         const projectile = this.game.getProjectile();
         if(projectile) projectile.start(this.x + this.width * 0.5, this.y);
@@ -32,7 +35,10 @@ class Player {
     
 }
 
+
+// PROJECTILE CLASS
 class Projectile {
+    // CONSTRUCTOR
     constructor(){
         this.width = 8;
         this.height = 40;
@@ -42,12 +48,15 @@ class Projectile {
         this.free = true;
     }
 
+    // DRAW
     draw(context){
         if (!this.free){
             context.fillRect(this.x, this.y, this.width, this.height);
         }
     }
 
+
+    // UPDATE
     update(){
         if (!this.free){
             this.y -= this.speed;
@@ -55,19 +64,22 @@ class Projectile {
         }
     }
 
+    // START
     start(x,y){
         this.x = x - this.width * 0.5;
         this.y = y;
         this.free = false;
     }
 
+    // RESET
     reset() {
         this.free = true;
     }
 }
 
-
+// ENEMY CLASS
 class Enemy {
+    // CONSTRUCTOR
     constructor(game, positionX, positionY){
         this.game = game;
         this.width = this.game.enemySize;
