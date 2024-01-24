@@ -93,14 +93,17 @@ class Enemy {
 
     }
 
+    // DRAW
     draw(context){
         context.strokeRect(this.x, this.y, this.width, this.height);
     }
 
+    // UPDATE
     update(x,y) {
         this.x = x + this.positionX;
         this.y = y + this.positionY;
 
+        // CHECK FOR COLLISION
         this.game.projectilesPool.forEach(projectile => {
             if(this.game.checkCollision(this, projectile)){
                 this.markedForDeletion = true;
