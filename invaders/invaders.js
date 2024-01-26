@@ -43,7 +43,7 @@ class Projectile {
         this.width = 8;
         this.height = 40;
         this.x = 0;
-        this.y =0;
+        this.y = 0;
         this.speed = 20;
         this.free = true;
     }
@@ -89,8 +89,6 @@ class Enemy {
         this.positionX = positionX;
         this.positionY = positionY;
         this.markedForDeletion = false;
-
-
     }
 
     // DRAW
@@ -105,10 +103,16 @@ class Enemy {
 
         // CHECK FOR COLLISION
         this.game.projectilesPool.forEach(projectile => {
-            if(this.game.checkCollision(this, projectile)){
+            if(!projectile.free && this.game.checkCollision(this, projectile)){
                 this.markedForDeletion = true;
+                projectile.reset();
+                this.game.score++;
             }
-        })
+        });
+        if (this.y + this.height > this.game.height){
+            this.game.gameOver = true;
+            this.markedForDeletion = true;
+        }
     }
 }
 
@@ -123,6 +127,7 @@ class Wave {
         this.speedX = 3;
         this.speedY = 0;
         this.enemies = [];
+        this.nextWaveTrigger = false;
         this.create();
     }
 
@@ -140,6 +145,7 @@ class Wave {
             enemy.update(this.x, this.y);
             enemy.draw(context);
         })
+        this.enemies = this.enemies.filter(object => !object.markedForDeletion);
     }
 
     create(){
@@ -172,6 +178,10 @@ class Game {
 
         this.waves = [];
         this.waves.push(new Wave(this));
+        this.waveCount = 1;
+
+        this.score = 0;
+        this.gameOver = false;
 
 
         window.addEventListener('keydown', e => {
@@ -191,6 +201,7 @@ class Game {
     }
 
     render (context){
+        this.drawStatusText(context);
         this.player.draw(context);
         this.player.update();
         this.projectilesPool.forEach(projectile => {
@@ -199,6 +210,11 @@ class Game {
         });
         this.waves.forEach(wave => {
             wave.render(context);
+            if (wave.enemies.length < 1 && !wave.nextWaveTrigger && !this.gameOver){
+                this.newWave();
+                this.waveCount++;
+                WaveShaperNode.nextWaveTrigger = true;
+            }
         })
     }
 
@@ -216,17 +232,38 @@ class Game {
 
     // COLLISION
     checkCollision(a,b){
-        if(
+        return(
             a.x < b.x + b.width &&
             a.x + a.width > b.x &&
             a.y < b.y + b.height &&
             a.y + a.height > b.y
-        ) {
-            // COLLISION
+        )
+    }
 
-        } else {
-            // NO COLLISION
+    drawStatusText(context){
+        context.save();
+        context.shadowOffsetX = 2;
+        context.shadowOffsetY = 2;
+        context.shadowColor = 'black';
+        context.fillText('Score : ' + this.score, 20, 40);
+        context.fillText('Wave Count : ' + this.waveCount, 20, 80);
+
+        if(this.gameOver){
+            context.textAlign = 'center';
+            context.font = '100px impact';
+            context.fillText('GAME OVER', this.width * 0.5, this.height * 0.5);
         }
+        context.restore();
+    }
+
+    newWave(){
+        if (Math.random() < 0.5 && this.columns * this.enemySize < this.width * 0){
+            this.columns++;
+        } else {
+            this.rows++;
+        }
+        this.waves.push(new Wave(this));
+
     }
 }
 
@@ -240,7 +277,7 @@ window.addEventListener('load', function(){
     ctx.fillStyle = "white";
     ctx.strokeStyle = "white";
     ctx.lineWidth = 5;
-
+    ctx.font = '30px Impact';
 
 
     const game = new Game(canvas);
