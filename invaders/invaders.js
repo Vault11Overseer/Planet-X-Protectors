@@ -9,6 +9,7 @@ class Player {
         this.x = this.game.width * 0.5 - this.width * 0.5;
         this.y = this.game.height - this.height;
         this.speed = 10;
+        this.lives = 3;
     }
 
     // DRAW
@@ -31,6 +32,12 @@ class Player {
     shoot(){
         const projectile = this.game.getProjectile();
         if(projectile) projectile.start(this.x + this.width * 0.5, this.y);
+    }
+
+    restart(){
+        this.x = this.game.width * 0.5 - this.width * 0.5;
+        this.y = this.game.height - this.height;
+        this.lives = 3;
     }
     
 }
@@ -94,6 +101,7 @@ class Enemy {
     // DRAW
     draw(context){
         context.strokeRect(this.x, this.y, this.width, this.height);
+        context.drawImage(this.image, 0, 0 , this.width, this.height, this.x, this.y,this.width, this.draw.height);
     }
 
     // UPDATE
@@ -106,9 +114,19 @@ class Enemy {
             if(!projectile.free && this.game.checkCollision(this, projectile)){
                 this.markedForDeletion = true;
                 projectile.reset();
-                this.game.score++;
+                if(!this.game.gameOver) this.game.score++;
             }
         });
+
+        // ENEMY & PLAYER COLLISION
+        if(this.game.checkCollision(this, this.game.player)){
+            this.markedForDeletion = true;
+            if(!this.game.gameOver && this.game.score > 0) this.game.score--;
+            this.game.player.lives;
+            if(this.game.player.lives < 1) this.game.gameOver = true;
+        }
+
+        // LOOSE CONDITION
         if (this.y + this.height > this.game.height){
             this.game.gameOver = true;
             this.markedForDeletion = true;
@@ -116,6 +134,16 @@ class Enemy {
     }
 }
 
+
+
+class Beetlemorph extends Enemy{
+    constructor(game, positionX, positionY){
+        super(game, positionX, positionY);
+        this.image = document.getElementById('beetle');
+        
+    }
+
+}
 
 class Wave {
     constructor(game){
@@ -153,7 +181,7 @@ class Wave {
             for (let x = 0; x < this.game.columns; x++){
                 let enemyX = x * this.game.enemySize;
                 let enemyY = y * this.game.enemySize;
-                this.enemies.push(new Enemy(this.game, enemyX, enemyY));
+                this.enemies.push(new Beetlemorph(this.game, enemyX, enemyY));
 
             }
         }
@@ -172,8 +200,8 @@ class Game {
         this.numberOfProjectiles = 10;
         this.createProjectiles();
 
-        this.columns = 3;
-        this.rows = 3;
+        this.columns = 2;
+        this.rows = 2;
         this.enemySize = 60;
 
         this.waves = [];
@@ -182,20 +210,23 @@ class Game {
 
         this.score = 0;
         this.gameOver = false;
+        this.fired = false;
 
 
         window.addEventListener('keydown', e => {
             // console.log(e.key);
+            if(e.key === 'a' && !this.fired) this.player.shoot();
+            this.fired = true;
             if(this.keys.indexOf(e.key) === -1) this.keys.push(e.key);
-            if(e.key === '1') this.player.shoot();
+
+            if(e.key === 'r' && this.gameOver) this.restart();
             // console.log(this.keys)
         })
 
         window.addEventListener('keyup', e => {
-            // console.log(e.key);
+            this.fired = false;
             const index = this.keys.indexOf(e.key);
             if (index > -1) this.keys.splice(index, 1);
-            // console.log(this.keys)
         });
 
     }
@@ -213,7 +244,8 @@ class Game {
             if (wave.enemies.length < 1 && !wave.nextWaveTrigger && !this.gameOver){
                 this.newWave();
                 this.waveCount++;
-                WaveShaperNode.nextWaveTrigger = true;
+                wave.nextWaveTrigger = true;
+                this.player.lives++;
             }
         })
     }
@@ -247,23 +279,43 @@ class Game {
         context.shadowColor = 'black';
         context.fillText('Score : ' + this.score, 20, 40);
         context.fillText('Wave Count : ' + this.waveCount, 20, 80);
+        for(let i = 0; i < this.player.lives; i++){
+            context.fillRect(20 + 10 * i,100,5,20);
+        }
 
         if(this.gameOver){
             context.textAlign = 'center';
             context.font = '100px impact';
             context.fillText('GAME OVER', this.width * 0.5, this.height * 0.5);
+            context.font = '20px impact';
+            context.fillText('Press R to restart', this.width * 0.5, this.height * 0.5 + 30);
         }
         context.restore();
     }
 
     newWave(){
-        if (Math.random() < 0.5 && this.columns * this.enemySize < this.width * 0){
+        if (Math.random() < 0.5 && this.columns * this.enemySize < this.width * 0.8){
             this.columns++;
         } else {
             this.rows++;
         }
         this.waves.push(new Wave(this));
 
+    }
+
+
+    restart(){
+        this.player.restart();
+
+        this.columns = 2;
+        this.rows = 2;
+
+        this.waves = [];
+        this.waves.push(new Wave(this));
+        this.waveCount = 1;
+
+        this.score = 0;
+        this.gameOver = false;
     }
 }
 
