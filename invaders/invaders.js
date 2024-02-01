@@ -119,6 +119,7 @@ class Enemy {
 
         if(this.lives < 1){
             this.frameX++;
+
             if(this.frameX > this.maxFrame){
                 this.markedForDeletion = true;
                 if(!this.game.gameOver) this.game.score += this.maxLives;
@@ -163,6 +164,7 @@ class Beetlemorph extends Enemy{
 }
 
 class Wave {
+    
     constructor(game){
         this.game = game;
         this.width = this.game.columns * this.game.enemySize;
