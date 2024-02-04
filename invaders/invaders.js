@@ -209,8 +209,9 @@ class Wave {
     }
 }
 
+// GAME CLASS
 class Game {
-    
+    // GAME CONSTRUCTOR
     constructor(canvas){
         this.canvas = canvas;
         this.width = this.canvas.width;
