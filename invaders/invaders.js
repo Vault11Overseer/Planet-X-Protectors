@@ -236,6 +236,7 @@ class Game {
         this.fired = false;
 
 
+        // KEYDOWN EVENT LISTENER
         window.addEventListener('keydown', e => {
             // console.log(e.key);
             if(e.key === 'a' && !this.fired) this.player.shoot();
@@ -246,6 +247,7 @@ class Game {
             // console.log(this.keys)
         })
 
+        // KEYUP EVENT LISTENER
         window.addEventListener('keyup', e => {
             this.fired = false;
             const index = this.keys.indexOf(e.key);
@@ -254,6 +256,9 @@ class Game {
 
     }
 
+    
+
+    // RENDER METHOD
     render (context){
         this.drawStatusText(context);
         this.player.draw(context);
@@ -273,12 +278,15 @@ class Game {
         })
     }
 
+    // PROJECTILES
+    // CREATING PROJECTILES
     createProjectiles() {
         for (let i = 0; i < this.numberOfProjectiles; i++){
             this.projectilesPool.push(new Projectile());
         }
     };
 
+    // GETTING PROJECTILES
     getProjectile(){
         for(let i = 0; i < this.projectilesPool.length; i++) {
             if (this.projectilesPool[i].free) return this.projectilesPool[i];
