@@ -263,10 +263,12 @@ class Game {
         this.drawStatusText(context);
         this.player.draw(context);
         this.player.update();
+
         this.projectilesPool.forEach(projectile => {
             projectile.update();
             projectile.draw(context);
         });
+
         this.waves.forEach(wave => {
             wave.render(context);
             if (wave.enemies.length < 1 && !wave.nextWaveTrigger && !this.gameOver){
@@ -303,6 +305,7 @@ class Game {
         )
     }
 
+    // DRAW STATUS TEXT
     drawStatusText(context){
         context.save();
         context.shadowOffsetX = 2;
@@ -314,6 +317,7 @@ class Game {
             context.fillRect(20 + 10 * i,100,5,20);
         }
 
+        // GAME OVER TEXT
         if(this.gameOver){
             context.textAlign = 'center';
             context.font = '100px impact';
@@ -324,6 +328,7 @@ class Game {
         context.restore();
     }
 
+    // NEW WAVE
     newWave(){
         if (Math.random() < 0.5 && this.columns * this.enemySize < this.width * 0.8){
             this.columns++;
@@ -335,6 +340,7 @@ class Game {
     }
 
 
+    // GAME RESTART
     restart(){
         this.player.restart();
 
