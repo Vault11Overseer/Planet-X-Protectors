@@ -259,7 +259,8 @@ class Game {
     
 
     // RENDER METHOD
-    render (context){
+    render (context, deltaTime){
+        console.log(deltaTime)
         this.drawStatusText(context);
         this.player.draw(context);
         this.player.update();
@@ -357,7 +358,7 @@ class Game {
 }
 
 
-
+// WINDOW LOAD FUNCTION
 window.addEventListener('load', function(){
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
@@ -368,15 +369,21 @@ window.addEventListener('load', function(){
     ctx.lineWidth = 5;
     ctx.font = '30px Impact';
 
-
+    // CALL NEW GAME AND RENDER
     const game = new Game(canvas);
-    game.render(ctx);
+    // game.render(ctx);
 
-    function animate(){
+
+    let lastTime = 0;
+
+    // ANIMATE FUNCTION
+    function animate(timeStamp){
+        const deltaTime = timeStamp - lastTime;
+        lastTime = timeStamp;
+        // console.log(timestamp);
         ctx.clearRect(0,0, canvas.width, canvas.height);
-        game.render(ctx);
+        game.render(ctx, deltaTime);
         window.requestAnimationFrame(animate);
     }
-
-    animate()
-})
+    animate(0)
+});
