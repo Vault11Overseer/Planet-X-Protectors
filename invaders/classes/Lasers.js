@@ -38,7 +38,7 @@ export class Laser {
     }
 }
 
-
+// SMALL LASER
 export class SmallLaser extends Laser {
     constructor(game){
         super(game);

@@ -1,5 +1,5 @@
-export // PROJECTILE CLASS
-class Projectile {
+// PROJECTILE CLASS
+export class Projectile {
     // CONSTRUCTOR
     constructor(){
         this.width = 3;
