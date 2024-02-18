@@ -11,7 +11,7 @@ ctx.font = '50px Georgia';
 
 // MOUSE
 let canvasPosition = canvas.getBoundingClientRect();
-console.log(canvasPosition);
+// console.log(canvasPosition);
 const mouse = {
     x: canvas.width / 2,
     y: canvas.height /2,
@@ -21,62 +21,62 @@ const mouse = {
 canvas.addEventListener('mousedown', function(event){
     mouse.x = event.x - canvasPosition.left;
     mouse.y = event.y - canvasPosition.top;
-    console.log(event);
-    console.log(mouse.x, mouse.y);
+    // console.log(event);
+    // console.log(mouse.x, mouse.y);
 
 })
 
 canvas.addEventListener('mouseup', function(event){
    mouse.click = false;
-
-})
+});
 
 // PLAYER
 
 const playerLeft = new Image();
-playerLeft.src = './assets/spritesheets/red_fish_left.png';
+playerLeft.src = 'red_fish_left.png';
 const playerRight = new Image();
-playerLeft.src = './assets/spritesheets/red_fish_left.png';
+playerRight.src = 'red_fish_right.png';
 
 
 class Player {
+    // PLAYER CONSTRUCTOR
     constructor(){
+        // CANVAS SIZE
         this.x = canvas.width;
         this.y = canvas.height / 2;
+        // RADIUS & ANGLE
         this.radius = 50;
         this.angle = 0;
+        // FRAME X & Y
         this.frameX = 0;
         this.frameY = 0;
         this.frame = 0;
+        // SPRITE SIZE
         this.spriteWidth = 498;
         this.spriteHeight = 327;
     }
 
     update(){
+        // DELTA X & DELTA Y
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
-
+        // THETA & ANGLE
         let theta = Math.atan2(dy, dx);
         this.angle = theta;
-
-
-        if (mouse.x != this.x){
-            this.x-= dx / 30;
-        } 
-
-        if (mouse.y != this.y){
-            this.y -= dy / 30;
-        }
+        // ?
+        if (mouse.x != this.x){this.x-= dx / 20;} 
+        if (mouse.y != this.y){this.y -= dy / 20;}
     }
 
+    // PLAYER DRAW
     draw(){
+        // MOUSE CLICK
         if (mouse.click){
             ctx.lineWidth = 0.2;
             ctx.beginPath();
             ctx.moveTo(this.x, this.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
-
         }
 
         ctx.fillStyle = 'red';
@@ -99,22 +99,28 @@ class Player {
     }
 }
 
-
+// CALL NEW PLAYER
 const player = new Player();
 
-const bubblesArray = [];
 
+// BUBBLE ARRAY
+const bubblesArray = [];
+// BUBBLE CLASS
 class Bubble {
+    // BUBBLE CONSTRUCTOR
     constructor(){
         this.x = Math.random() * canvas.width;
         this.y = canvas.height + 100;
         this.radius = 50;
+        // BUBBLE SPEED
         this.speed = Math.random() * 5 +1;
         this.distance;
         this.counted = false;
+        // RANDOMIZE SOUND
         this.sound = Math.random() <= 0.5 ? 'sound1' : 'sound2';
     }
 
+    // BUBBLE UPDATE
     update() {
         this.y -= this.speed;
         const dx = this.x - player.x;
@@ -122,6 +128,7 @@ class Bubble {
         this.distance = Math.sqrt(dx*dx + dy*dy);
     }
 
+    // BUBBLE DRAW
     draw() {
         ctx.fillStyle = 'blue';
         ctx.beginPath();
@@ -132,15 +139,16 @@ class Bubble {
     }
 }
 
-
+// BUBBLE SOUND 1
 const bubblePop1 = document.createElement('audio');
 bubblePop1.src = './assets/sounds/Plop.ogg';
 
-
+// BUBBLE SOUND 2
 const bubblePop2 = document.createElement('audio');
-bubblePop1.src = './assets/sounds/bubbles-single2.wav';
+bubblePop2.src = './assets/sounds/bubbles-single2.wav';
 
 function handleBubbles(){
+
     if (gameFrame % 50 == 0){
         bubblesArray.push(new Bubble());
         // console.log(bubblesArray.length);
@@ -160,21 +168,17 @@ function handleBubbles(){
                 // console.log('collision');
                 if(!bubblesArray[i].counted){
                     if(bubblesArray[i].sound == 'sound1'){
-                        bubblePop1.play();
+                        // bubblePop1.play();
                     } else {
-                        bubblePop2.play();
+                        // bubblePop2.play();
                     }
                     score++;
                     bubblesArray[i].counted = true;
                     bubblesArray.splice(i,1);
                 }
             }
-        }
-        
+        }   
     }
-
-
-
 }
 
 
@@ -191,3 +195,9 @@ function animate(){
 }
 
 animate();
+
+
+
+window.addEventListener('resize', function(){
+    canvasPosition = canvas.getBoundingClientRect();
+})
