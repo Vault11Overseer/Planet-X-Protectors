@@ -179,9 +179,10 @@ function handleBubbles(){
             }
         }   
     }
+
 }
 
-
+// ANIMATE FUNCTION
 function animate(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
     handleBubbles();
@@ -193,11 +194,11 @@ function animate(){
     // console.log(gameFrame);
     requestAnimationFrame(animate);
 }
-
+// CALL ANIMATE
 animate();
 
 
-
+// ADD EVENT LISTENER TO PREVENT FLASHING
 window.addEventListener('resize', function(){
     canvasPosition = canvas.getBoundingClientRect();
 })
