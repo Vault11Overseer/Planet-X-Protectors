@@ -1,9 +1,11 @@
+/* ALL */
 * { 
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
 }
 
+/* CANVAS */
 #canvas1 {
     border: 3px solid black;
     background: url('./assets/invadersp2/background.png');
@@ -15,4 +17,5 @@
     background-size: cover;
 }
 
+/* HIDDEN */
 .hidden {display: none;}
