@@ -154,30 +154,27 @@ function handleBubbles(){
         // console.log(bubblesArray.length);
     }
 
-    for(let i = 0; i < bubblesArray.length; i++){
-        bubblesArray[i].update();
-        bubblesArray[i].draw();
-    }
-
-    for(let i = 0; i < bubblesArray.length; i++){
+    for (let i = 0; i < bubblesArray.length; i++){
         if (bubblesArray[i].y < 0 - bubblesArray[i].radius * 2){
-            bubblesArray.splice(i, 1);
+            bubblesArray.splice(i,1);
         }
+
         if (bubblesArray[i]){
             if (bubblesArray[i].distance < bubblesArray[i].radius + player.radius){
-                // console.log('collision');
                 if(!bubblesArray[i].counted){
                     if(bubblesArray[i].sound == 'sound1'){
-                        // bubblePop1.play();
+
                     } else {
-                        // bubblePop2.play();
+
                     }
                     score++;
                     bubblesArray[i].counted = true;
-                    bubblesArray.splice(i,1);
+                    bubblesArray.splice(i, 1);
                 }
             }
-        }   
+        }
+        bubblesArray[i].update();
+        bubblesArray[i].draw();
     }
 
 }
