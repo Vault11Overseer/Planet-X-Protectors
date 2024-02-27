@@ -149,39 +149,45 @@ bubblePop2.src = './assets/sounds/bubbles-single2.wav';
 
 function handleBubbles(){
 
-    if (gameFrame % 50 == 0){
-        bubblesArray.push(new Bubble());
-        // console.log(bubblesArray.length);
-    }
+    if (gameFrame % 50 == 0){bubblesArray.push(new Bubble());}
 
     for (let i = 0; i < bubblesArray.length; i++){
+        bubblesArray[i].update();
+        bubblesArray[i].draw();
         if (bubblesArray[i].y < 0 - bubblesArray[i].radius * 2){
             bubblesArray.splice(i,1);
-        }
-
-        if (bubblesArray[i]){
-            if (bubblesArray[i].distance < bubblesArray[i].radius + player.radius){
+            i--;
+        } else if (bubblesArray[i].distance < bubblesArray[i].radius + player.radius){
                 if(!bubblesArray[i].counted){
                     if(bubblesArray[i].sound == 'sound1'){
-
+                        bubblePop1.play();
                     } else {
-
+                        bubblePop2.play();
                     }
                     score++;
                     bubblesArray[i].counted = true;
                     bubblesArray.splice(i, 1);
+                    i--;
                 }
-            }
         }
-        bubblesArray[i].update();
-        bubblesArray[i].draw();
     }
+    for (let i = 0; i < bubblesArray.length; i ++){
 
+    }
+}
+
+// REPEATING BACKGROUNDS
+const background = new Image();
+background.src = "background1.png";
+
+function handleBackground(){
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 }
 
 // ANIMATE FUNCTION
 function animate(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
+    handleBackground();
     handleBubbles();
     player.update();
     player.draw();
