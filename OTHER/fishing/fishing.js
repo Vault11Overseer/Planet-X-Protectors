@@ -8,6 +8,7 @@ canvas.height = 500;
 let score = 0;
 let gameFrame = 0;
 ctx.font = '50px Georgia';
+let gameSpeed = 1;
 
 // MOUSE
 let canvasPosition = canvas.getBoundingClientRect();
@@ -105,6 +106,9 @@ const player = new Player();
 
 // BUBBLE ARRAY
 const bubblesArray = [];
+const bubbleImage = new Image();
+bubbleImage.src = 'bubble_pop_frame_01.png';
+
 // BUBBLE CLASS
 class Bubble {
     // BUBBLE CONSTRUCTOR
@@ -130,12 +134,13 @@ class Bubble {
 
     // BUBBLE DRAW
     draw() {
-        ctx.fillStyle = 'blue';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.closePath();
-        ctx.stroke();
+        // ctx.fillStyle = 'blue';
+        // ctx.beginPath();
+        // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        // ctx.fill() ;
+        // ctx.closePath();
+        // ctx.stroke();
+        ctx.drawImage(bubbleImage, this.x - 65, this.y - 65, this.radius * 2.6, this.radius * 2.6);
     }
 }
 
@@ -176,12 +181,94 @@ function handleBubbles(){
     }
 }
 
+
+// ENEMIES
+const enemyImage = new Image();
+enemyImage.src = 'enemy1.png';
+
+// ENEMY CLASS
+class Enemy {
+    // ENEMY CONSTRUCTOR
+    constructor(){
+        this.x = canvas.width - 200;
+        this.y = Math.random() * (canvas.height - 150) + 90;
+        this.radius = 60;
+        // ENEMY SPEED
+        this.speed = Math.random() * 2 + 2;
+
+        this.frame = 0;
+        this.frameX = 0;
+        this.frameY = 0;
+        // SPRITE SIZE
+        this.spriteWidth = 418;
+        this.spriteHeight = 397
+    }
+
+    // ENEMY DRAW
+    draw () {
+        ctx.fillStyle = 'red';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.drawImage(enemyImage, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.x - 60, this.y - 70, this.spriteWidth / 3, this.spriteHeight / 3);
+    }
+
+    // ENEMY UPDATE
+    update() {
+        this.x -= this.speed;
+
+        if(this.x < 0 - this.radius * 2){
+            this.x = canvas.width + 200;
+            this.y = Math.random() * (canvas.height - 150) + 90;
+            this.speed = Math.random() * 2 + 2;
+        }
+
+        if (gameFrame % 5 == 0){
+            this.frame++;
+            if (this.frame >= 12) this.frame =0;
+            if (this.frame == 3 || this.frame == 7 || this.frame == 11){
+                this.frame =0;
+            } else {
+                this.frameX++;
+            }
+
+            if (this.frame < 3) this.frameY = 0;
+            else if (this.frame < 7) this.frameY = 1;
+            else if (this.frame < 11) this.frameY = 2;
+            else this.frameY = 0;
+
+
+        }
+    }
+}
+
+const enemy1 = new Enemy();
+
+function handleEnemies(){
+    enemy1.update();
+    enemy1.draw();
+}
+
 // REPEATING BACKGROUNDS
 const background = new Image();
 background.src = "background1.png";
 
+const BG = {
+    x1: 0,
+    x2: canvas.width,
+    y: 0,
+    width: canvas.width,
+    height: canvas.height,
+}
+
 function handleBackground(){
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    BG.x1 -= gameSpeed;
+    if (BG.x1 < -BG.width) BG.x1 = BG.width;
+    BG.x2 -= gameSpeed;
+    if (BG.x1 < -BG.width) BG.x1 = BG.width;
+    ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height);
+    ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height);
+
 }
 
 // ANIMATE FUNCTION
@@ -191,6 +278,7 @@ function animate(){
     handleBubbles();
     player.update();
     player.draw();
+    handleEnemies();
     ctx.fillStyle = 'black';
     ctx.fillText('score: ' + score, 10, 50)
     gameFrame++;
