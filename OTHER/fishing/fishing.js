@@ -9,6 +9,7 @@ let score = 0;
 let gameFrame = 0;
 ctx.font = '50px Georgia';
 let gameSpeed = 1;
+let gameOver = false;
 
 // MOUSE
 let canvasPosition = canvas.getBoundingClientRect();
@@ -190,7 +191,7 @@ enemyImage.src = 'enemy1.png';
 class Enemy {
     // ENEMY CONSTRUCTOR
     constructor(){
-        this.x = canvas.width - 200;
+        this.x = canvas.width + 200;
         this.y = Math.random() * (canvas.height - 150) + 90;
         this.radius = 60;
         // ENEMY SPEED
@@ -225,7 +226,7 @@ class Enemy {
 
         if (gameFrame % 5 == 0){
             this.frame++;
-            if (this.frame >= 12) this.frame =0;
+            if (this.frame >= 12) this.frame = 0;
             if (this.frame == 3 || this.frame == 7 || this.frame == 11){
                 this.frame =0;
             } else {
@@ -236,8 +237,14 @@ class Enemy {
             else if (this.frame < 7) this.frameY = 1;
             else if (this.frame < 11) this.frameY = 2;
             else this.frameY = 0;
+        }
 
-
+        // COLLISION WITH PLAYER
+        const dx= this.x - player.x;
+        const dy = this.y - player.y;
+        const distance = Math.sqrt(dx * dx + dy * dy );
+        if (distance < this.radius + player.radius){
+            handleGameOver();
         }
     }
 }
@@ -245,8 +252,9 @@ class Enemy {
 const enemy1 = new Enemy();
 
 function handleEnemies(){
-    enemy1.update();
     enemy1.draw();
+    enemy1.update();
+
 }
 
 // REPEATING BACKGROUNDS
@@ -271,6 +279,13 @@ function handleBackground(){
 
 }
 
+
+function handleGameOver(){
+    ctx.fillStyle = 'white';
+    ctx.fillText('GAME OVER, you reached score ' + score, 130, 250);
+    gameOver = true;
+}
+
 // ANIMATE FUNCTION
 function animate(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -282,8 +297,7 @@ function animate(){
     ctx.fillStyle = 'black';
     ctx.fillText('score: ' + score, 10, 50)
     gameFrame++;
-    // console.log(gameFrame);
-    requestAnimationFrame(animate);
+    if(!gameOver)requestAnimationFrame(animate);
 }
 // CALL ANIMATE
 animate();
