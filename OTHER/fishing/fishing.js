@@ -126,7 +126,7 @@ class Bubble {
     }
 
     // BUBBLE UPDATE
-    update() {
+    update(){
         this.y -= this.speed;
         const dx = this.x - player.x;
         const dy = this.y - player.y;
@@ -134,13 +134,14 @@ class Bubble {
     }
 
     // BUBBLE DRAW
-    draw() {
+    draw(){
         // ctx.fillStyle = 'blue';
         // ctx.beginPath();
         // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         // ctx.fill() ;
         // ctx.closePath();
         // ctx.stroke();
+
         ctx.drawImage(bubbleImage, this.x - 65, this.y - 65, this.radius * 2.6, this.radius * 2.6);
     }
 }
@@ -282,7 +283,7 @@ function handleBackground(){
 
 function handleGameOver(){
     ctx.fillStyle = 'white';
-    ctx.fillText('GAME OVER, you reached score ' + score, 130, 250);
+    ctx.fillText('GAME OVER, you reached score ' + score, 120, 250);
     gameOver = true;
 }
 
