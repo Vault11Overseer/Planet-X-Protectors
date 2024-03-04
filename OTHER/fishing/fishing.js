@@ -1,15 +1,16 @@
 // FISHING GAME
-
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext('2d');
+// CANVAS SIZE
 canvas.width = 800;
 canvas.height = 500;
-
+// GAME STATISTICS
 let score = 0;
 let gameFrame = 0;
-ctx.font = '50px Georgia';
 let gameSpeed = 1;
 let gameOver = false;
+ctx.font = '50px Georgia';
+
 
 // MOUSE
 let canvasPosition = canvas.getBoundingClientRect();
@@ -136,7 +137,7 @@ class Bubble {
 
     // BUBBLE DRAW
     draw(){
-        
+
         // ctx.fillStyle = 'blue';
         // ctx.beginPath();
         // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
