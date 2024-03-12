@@ -8,7 +8,6 @@ import { Asteroid, Beetle, Lobster, Rhino, Boss } from './classes/Enemy.js';
 class Game {
     // GAME CONSTRUCTOR
     constructor(canvas) {
-
         // CANVAS DIMENSIONS
         this.canvas = canvas;
         this.width = this.canvas.width;
@@ -52,7 +51,7 @@ class Game {
 
 
 
-        // ????
+        // ???? NEW
         // SOUND HANDLER
         this.explosion1 = document.getElementById('explosion1');
         this.explosion2 = document.getElementById('explosion2');
@@ -80,10 +79,15 @@ class Game {
 
         });
 
-        function restart (){
-          location.reload();  
-        }
+        // LOOK AT
+        // function restart (){
+        //   location.reload();  
+        // }
 
+        window.addEventListener('resize', e =>{
+            // console.log(this);
+            this.resize(e.target.innerWidth, e.target.innerHeight);
+        })
 
 
         // ??????
@@ -96,6 +100,14 @@ class Game {
             }
             else if (e.key === 'r') {restart()}
         });
+    }
+
+        // NEW RISIZE 
+        resize(width, height){
+        this.canvas.width;
+        this.canvas.height;
+        this.width = width;
+        this.height = height;
     }
 
 
