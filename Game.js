@@ -112,6 +112,7 @@ class Game {
 
 
     // PLAY SOUND
+    
     play(){
         this.sound.currentTime = 0;
         this.sound.play();
