@@ -51,6 +51,9 @@ class Game {
 
 
 
+        // START
+        // this.start();
+
         // ???? NEW
         // SOUND HANDLER
         this.explosion1 = document.getElementById('explosion1');
@@ -84,10 +87,10 @@ class Game {
         //   location.reload();  
         // }
 
-        window.addEventListener('resize', e =>{
-            // console.log(this);
-            this.resize(e.target.innerWidth, e.target.innerHeight);
-        })
+        // window.addEventListener('resize', e =>{
+        //     // console.log(this);
+        //     this.resize(e.target.innerWidth, e.target.innerHeight);
+        // })
 
 
         // ??????
@@ -102,17 +105,21 @@ class Game {
         });
     }
 
-        // NEW RISIZE 
-        resize(width, height){
-        this.canvas.width;
-        this.canvas.height;
-        this.width = width;
-        this.height = height;
-    }
+    // start(){
+    //     this.resize(e.traget.innerWidth, e.target.innerHeight);
+    // }
+    //     // NEW RISIZE 
+    //     resize(width, height){
+    //     this.canvas.width;
+    //     this.canvas.height;
+    //     this.width = width;
+    //     this.height = height;
+    //     this.ctx.fillStyle = 'green';
+    // }
 
 
     // PLAY SOUND
-    
+
     play(){
         this.sound.currentTime = 0;
         this.sound.play();
