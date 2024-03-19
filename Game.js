@@ -12,42 +12,37 @@ class Game {
         this.canvas = canvas;
         this.width = this.canvas.width;
         this.height = this.canvas.height;
-
         // DEBUG OFF
         this.debug = false;
-
         // NEW INSTANCE OF PLAYER . PLANET
         this.planet = new Planet(this);
         this.player = new Player(this);
-
         // PROJECTILE POOL ARRAY
         this.projectPool = [];
         this.numberOfProjectiles = 20;
         this.createProjectilePool();
-
         // ENEMY POOL ARRAY
         this.enemyPool = [];
         this.numberOfEnemies = 20;
         this.createEnemyPool();
-
         // ENEMY TIMER SYSTEM
         this.enemyPool[0].start();
         this.enemyTimer = 0;
         this.enemyInterval = 800;
-
         // SPRITE ANIMATION
         this.spriteUpdate = false;
         this.spriteTimer = 0;
         this.spriteInterval = 150;
-
         // SCORE LOGIC
         this.score = 0;
         this.winningScore = 5;
         this.lives = 15;
-
-
         // MOUSE TRACKING - SET MOUSE COORDINATES
         this.mouse = {x:0, y:0};
+
+
+
+
 
 
 
