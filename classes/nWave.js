@@ -1,4 +1,4 @@
-import { Beetlemorph, Rhinomorph } from "./Enemy.js";
+import { Beetlemorph, Rhinomorph } from "../assets/nEnemy.js";
 
 export class Wave {
 

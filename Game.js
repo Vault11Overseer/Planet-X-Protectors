@@ -314,3 +314,76 @@ class Game {
         requestAnimationFrame(animate);
     }
 )
+
+
+
+
+
+// / BUBBLE SOUND 1
+// const bubblePop1 = document.createElement('audio');
+// bubblePop1.src = './assets/sounds/Plop.ogg';
+
+// BUBBLE SOUND 2
+// const bubblePop2 = document.createElement('audio');
+// bubblePop2.src = './assets/sounds/bubbles-single2.wav';
+
+// function handleBubbles(){
+
+//     if (gameFrame % 50 == 0){bubblesArray.push(new Bubble());}
+
+//     for (let i = 0; i < bubblesArray.length; i++){
+//         bubblesArray[i].update();
+//         bubblesArray[i].draw();
+//         if (bubblesArray[i].y < 0 - bubblesArray[i].radius * 2){
+//             bubblesArray.splice(i,1);
+//             i--;
+//         } else if (bubblesArray[i].distance < bubblesArray[i].radius + player.radius){
+//                 if(!bubblesArray[i].counted){
+//                     if(bubblesArray[i].sound == 'sound1'){
+//                         bubblePop1.play();
+//                     } else {
+//                         bubblePop2.play();
+//                     }
+//                     score++;
+//                     bubblesArray[i].counted = true;
+//                     bubblesArray.splice(i, 1);
+//                     i--;
+//                 }
+//         }
+//     }
+//     for (let i = 0; i < bubblesArray.length; i ++){
+
+//     }
+// }
+
+
+
+
+// REPEATING BACKGROUNDS
+// const background = new Image();
+// background.src = "background1.png";
+
+// const BG = {
+//     x1: 0,
+//     x2: canvas.width,
+//     y: 0,
+//     width: canvas.width,
+//     height: canvas.height,
+// }
+
+// function handleBackground(){
+//     BG.x1 -= gameSpeed;
+//     if (BG.x1 < -BG.width) BG.x1 = BG.width;
+//     BG.x2 -= gameSpeed;
+//     if (BG.x1 < -BG.width) BG.x1 = BG.width;
+//     ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height);
+//     ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height);
+
+// }
+
+
+// function handleGameOver(){
+//     ctx.fillStyle = 'white';
+//     ctx.fillText('GAME OVER, you reached score ' + score, 120, 250);
+//     gameOver = true;
+// }

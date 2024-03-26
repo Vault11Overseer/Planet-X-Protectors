@@ -1,4 +1,4 @@
-import {LargeLaser, SmallLaser} from './Lasers.js';
+import {LargeLaser, SmallLaser} from './nLasers.js';
 
 
 // CLASS PLAYER

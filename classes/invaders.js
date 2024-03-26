@@ -1,8 +1,8 @@
 // PLANET X PROTECTORS
-import { Boss } from './classes/Boss.js';
-import { Projectile } from './classes/Projectile.js';
-import { Wave } from './classes/Wave.js';
-import { Player } from './classes/Player.js'; 
+import { Boss } from './classes/nBoss.js';
+import { Projectile } from './classes/nProjectile.js';
+import { Wave } from './classes/nWave.js';
+import { Player } from './classes/nPlayer.js'; 
 
 // GAME CLASS
 class Game {
