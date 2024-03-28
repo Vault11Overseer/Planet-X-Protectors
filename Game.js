@@ -123,10 +123,10 @@ class Game {
 
     // PLAY SOUND
 
-    play(){
-        this.sound.currentTime = 0;
-        this.sound.play();
-    }
+    // play(){
+    //     this.sound.currentTime = 0;
+    //     this.sound.play();
+    // }
 
     // GAME RENDER
     render(context, deltaTime){
@@ -314,7 +314,6 @@ class Game {
         requestAnimationFrame(animate);
     }
 )
-
 
 
 
