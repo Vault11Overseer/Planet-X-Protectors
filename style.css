@@ -1,8 +1,9 @@
+/* MAIN */
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
 #canvas1 {
     border: 3px solid black;
-    background: url('./assets/defender/space.jpg');
+    background: url('./assets/defender/background1.png');
     /* background: url('./assets/robot/bg1.png'); */
     /* background: url('./assets/all/bg1.png'); */
     position: absolute;
@@ -11,13 +12,13 @@
     translate: -50% -50%;
     background-repeat: no-repeat;
     background-size: cover;
-    /* NEW */
     background-position: center;
 }
 
 .hidden {display: none;}
-
+/* MAIN - END */
 /* ADDED AFTER */
+/* CONTROLS */
 .controls {
     position: absolute;
     border: 5px solid white;
@@ -32,7 +33,6 @@
     height: 50px;
     /* background: transparent; */
     background: brown;
-
     color: white;
     font: 30px Bangers;
     border: 1px solid white;
@@ -48,7 +48,9 @@
     box-shadow: 4px 4px 4px 4px black;
     text-shadow: 2px 2px 2px 2px black;
 }
+/* CONTROLS - END */
 
+/* RESPONSIVE DESIGN */
 @media screen and (max-width: 900px){
     #canvas1 {
         background: url('');
@@ -56,3 +58,4 @@
         background-position: center;
     }
 }
+/* RESPONSIVE DESIGN - END*/
