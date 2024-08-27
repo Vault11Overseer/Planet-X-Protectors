@@ -51,6 +51,7 @@
   ## Can you help
   **See if you can help.**
   At the moment I am open to suggestions.
+  Currently working on new levels.
 
   ## Known Bugs
   **This is a list of all known bugs**
