@@ -14,6 +14,9 @@
   Please man the turret on the rocket and keep those damn bugs at bay!
  
   Make sure you remove at least 20 beetles, while we prepare our bombs.
+
+  #LEVEL 1
+  It starts off like a normal day blasting away at stray asteroids.
   
   ## Demonstration
   This project is live @ [https://alteredart.dev/PlanetXProtectors/](https://alteredart.dev/PlanetXProtectors/)
