@@ -15,9 +15,11 @@
  
   Make sure you remove at least 20 beetles, while we prepare our bombs.
 
-  #LEVEL 1
+  # LEVEL 1
   It starts off like a normal day blasting away at stray asteroids.
-  
+
+  # LEVEL 2
+  And then it begins, the robo monsters start flocking in.
   ## Demonstration
   This project is live @ [https://alteredart.dev/PlanetXProtectors/](https://alteredart.dev/PlanetXProtectors/)
 
