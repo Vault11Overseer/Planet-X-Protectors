@@ -21,7 +21,7 @@
   # LEVEL 2
   And then it begins, the robo monsters start flocking in.
   ## Demonstration
-  This project is live @ [https://alteredart.dev/PlanetXProtectors/](https://alteredart.dev/PlanetXProtectors/)
+  This project is live @ [(https://alteredartco.com/planetxprotectors/)](https://alteredartco.com/planetxprotectors/)
 
 
 
